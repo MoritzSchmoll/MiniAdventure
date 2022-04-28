@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Parser
+comment0.text=\r\n\ Diese\ Klasse\ ist\ Teil\ der\ Anwendung\ "MiniAdventure".\r\n\ "MiniAdventure"\ ist\ ein\ sehr\ einfaches\ textbasiertes\ \r\n\ Adventure-Game.\r\n\r\n\ Dieser\ Parser\ liest\ Benutzereingaben\ und\ wandelt\ sie\ in\r\n\ Befehle\ f\u00FCr\ das\ Adventure-Game\ um.\ Bei\ jedem\ Aufruf\r\n\ liest\ er\ eine\ Zeile\ von\ der\ Konsole\ und\ versucht,\ diese\ als\r\n\ einen\ Befehl\ aus\ bis\ zu\ zwei\ W\u00F6rtern\ zu\ interpretieren.\ Er\r\n\ liefert\ den\ Befehl\ als\ ein\ Objekt\ der\ Klasse\ Befehl\ zur\u00FCck.\r\n\ \r\n\ Der\ Parser\ verf\u00FCgt\ \u00FCber\ einen\ Satz\ an\ bekannten\ Befehlen.\ Er\r\n\ vergleicht\ die\ Eingabe\ mit\ diesen\ Befehlen.\ Wenn\ die\ Eingabe\r\n\ keinen\ bekannten\ Befehl\ enth\u00E4lt,\ dann\ liefert\ der\ Parser\ ein\ als\ \r\n\ unbekannter\ Befehl\ gekennzeichnetes\ Objekt\ zur\u00FCck.\r\n\ \r\n\ @author\ \ Michael\ K\u00F6lling\ und\ David\ J.\ Barnes\r\n\ @version\ 2016.02.29\r\n
+comment1.params=
+comment1.target=Parser()
+comment1.text=\r\n\ Erzeuge\ einen\ Parser,\ der\ Befehle\ von\ der\ Konsole\ einliest.\r\n
+comment2.params=
+comment2.target=Befehl\ liefereBefehl()
+comment2.text=\r\n\ @return\ \ den\ n\u00E4chsten\ Befehl\ des\ Benutzers\r\n
+comment3.params=
+comment3.target=Befehlswoerter\ getCommands()
+comment4.params=
+comment4.target=void\ zeigeBefehle()
+comment4.text=\r\n\ Gib\ eine\ Liste\ der\ bekannten\ Befehlsw\u00F6rter\ aus.\r\n
+numComments=5

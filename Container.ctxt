@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Container
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Container\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=_name\ _sizeLimit
+comment1.target=Container(java.lang.String,\ int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Container\r\n
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=
+comment3.target=void\ printContents()
+comment4.params=item
+comment4.target=void\ addItem(Item)
+comment5.params=itemName\ hasWeapon
+comment5.target=Item\ takeItem(java.lang.String,\ boolean)
+numComments=6

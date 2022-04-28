@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=RoomExit
+comment0.text=\r\n\ Die\ Klasse\ Ausgang\ beschreibt\ die\ Richtung\ des\ Ausgangs\ und\ den\ Raum,\ der\ an\ diesen\ angrenzt.\r\n\r\n\ \r\n
+comment1.params=_direction\ _neighbourRoom
+comment1.target=RoomExit(java.lang.String,\ Room)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Ausgang\r\n
+comment2.params=
+comment2.target=java.lang.String\ getDirection()
+comment2.text=\r\n\ Gibt\ die\ Richtung\ des\ Ausgangs\ zur\u00FCck.\r\n\r\n
+comment3.params=
+comment3.target=Room\ getNeighbourRoom()
+comment3.text=\r\n\ Gibt\ den\ Raum\ hinter\ dem\ Ausgang\ an.\r\n\r\n
+numComments=4
