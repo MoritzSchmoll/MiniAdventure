@@ -229,9 +229,9 @@ class Game
             if(command.hasSecondCommand()){
                 int result = currentRoom.tryingToEscape(command.gibZweitesWort());
                 if(result == 0){
+                    System.out.println("Du hast es geschafft zu flüchten.");
                     changeRoom(command);
                     checkForEnemy();
-                    System.out.println("Du hast es geschafft zu flüchten.");
                     isFighting = false;
                 }
                 else if(result == 1){
@@ -422,7 +422,7 @@ class Game
     private void checkForEnemy(){
         if(currentRoom.hasEnemy()){
             System.out.println("Es befindet sich ein Gegner mit dir im Raum.");
-            System.out.println("Zur Verfügung stehende Befehle: attack, escape");
+            System.out.println("Zur Verfügung stehende Befehle: attack, escape, feed");
             isFighting = true;
         }
     }
