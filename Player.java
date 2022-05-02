@@ -117,14 +117,21 @@ public class Player
 
     public void changeSaturation(int change){
         saturation += change;
-        if(saturation <= 0)
-        {
-            changeHealth(-1000);
-        }
     }
 
     public int getSaturation(){
         return saturation;
+    }
+    
+    public void heal(){
+        if(saturation > 10){
+            health += 10;
+            saturation -= 10;
+            System.out.println("Du hast 10 Lebenspunkt regeneriert und dafür 10 Sättigungspunkte verloren.");
+        }
+        else{
+            System.out.println("Deine Sättigung ist zu gering um dich zu regenerieren.");
+        }
     }
     
     public void changeHealth(int change){

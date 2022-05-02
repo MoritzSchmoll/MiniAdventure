@@ -16,7 +16,7 @@ class Befehlswoerter
     // ein konstantes Array mit den gültigen Befehlswörtern
     
     private static final String[] VALID_COMMANDS = {
-        "go", "quit", "exit", "stop", "help", "look", "inventory", "stats", "eat", "pickup", "container", "open", "attack", "escape", "enemy", "feed"
+        "go", "quit", "exit", "stop", "help", "look", "inventory", "stats", "eat", "pickup", "container", "open", "attack", "escape", "enemy", "feed", "heal"
     };
     private static final String[] CONTAINER_COMMANDS = {
         "put", "take", "close"
