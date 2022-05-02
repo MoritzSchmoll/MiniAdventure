@@ -52,11 +52,11 @@ class Game
         küche = new Room("in einer Küche mit einem Tisch, auf dem alte verkrustete Töpfe stehen");
         speisekammer = new Room("in einer kleinen Speisekammer die voller Schränke mit verstaubten Gläsern ist");
         rutsche = new Room("durch eine Rutsche mit einer dunklen Röhre gerutscht", true);
-        gewächshaus = new Room("im Gewächshaus");
-        treppenhaus = new Room("im Treppenhaus");
-        waffenkammer = new Room("in einer Waffenkammer");
-        thronsaal = new Room("im Thronsaal");
-        weinkeller = new Room("im Weinkeller");
+        gewächshaus = new Room("im Gewächshaus mit vielen großen Pflanzen, welche schöne große Früchte tragen");
+        treppenhaus = new Room("im Treppenhaus, dessen Stufen schon sehr morsch und gefährlich aus sehen");
+        waffenkammer = new Room("in einer Waffenkammer mit Waffenschränken, in welchen viele alte Waffen liegen, genauso wie alte Rüstungen");
+        thronsaal = new Room("in einem impossanten Thronsaal, in dem es einen langen Reihe aus Statuen gibt, die zu einem riesigen Thron führt");
+        weinkeller = new Room("im Weinkeller, an dessen Wänden große Regale mit sehr vielen Weinflaschen stehen");
 
         // die Ausgänge initialisieren
         garten.setExit("north", flur);
@@ -75,6 +75,7 @@ class Game
         treppenhaus.setExit("south", weinkeller);
         weinkeller.setExit("east", waffenkammer);
         waffenkammer.setExit("north", thronsaal);
+        waffenkammer.setExit("west", weinkeller);
         rutsche.setExit("east", waffenkammer);
 
         // Gegenstände verteilen
@@ -82,18 +83,13 @@ class Game
         küche.addWeapon("Keule", "eine große tödliche Keule", 10);
         küche.addFood("Brot", "trotz das dieses Haus sehr herunter gekommern und verlassen scheint, sieht diese Brot sehr Frisch aus", 20);
         schlafzimmer.addKey("Schlüssel", "ein großer Schlüssel", 2);
+        garten.addFood("Apfel", "ein schöner, glänzend roter Apfel", 15);
 
         // Container erschaffen
         schlafzimmer.addContainer("Kleiderschrank", 2);
 
         //Gegner erschaffen
-        speisekammer.addEnemy("Rattenkönig", //name
-                                "eine riesige Ratte, die so groß ist wie ein Hund", //description
-                                new Weapon("Fleischhammer", "ein großer blutverschmierter Fleischhammer", 5), //weapon
-                                60, //agility
-                                30, //health
-                                "Keks", //food
-                                new Food("Apfel", "ein goldener Apfel", 30)); //drop
+        speisekammer.addEnemy("Rattenkönig", "eine riesige Ratte, die so groß ist wie ein Hund", new Weapon("Fleischhammer", "ein großer blutverschmierter Fleischhammer",5), 60, 30);
 
         currentRoom = garten;  // das Spiel startet in Raum garten
     }
@@ -144,11 +140,6 @@ class Game
             System.out.println("Ich weiss nicht, was Sie meinen ...");
             return false;    
         }    
-        
-        if (commandWord.equals("quit") || commandWord.equals("exit") || commandWord.equals("stop")) {
-            return moechteBeenden = exit(command);
-        }
-        
         if(parser.getCommands().isContainerCommand(commandWord) && !containerIsOpened)    
         {    
             System.out.println("Sie haben keinen Container geöffnet");
@@ -165,7 +156,7 @@ class Game
             handleContainerCommand(command);
             return false;
         }
-        
+
         if(commandWord.equals("open") && !containerIsOpened)
         {
             if(!currentRoom.hasContainer())
@@ -198,27 +189,11 @@ class Game
             }
             return false;
         }
-
-        if (commandWord.equals("feed") && isFighting){
-            if(command.hasSecondCommand() && player.hasItem(command.gibZweitesWort()))
-            {
-                if(!currentRoom.feedEnemy(command.gibZweitesWort())) //aktueller Raum muss einen Gegner haben, da der Spieler bereits im Kampf ist
-                {
-                    System.out.println("Dem Gegner hat diese Nahrung nicht geschmeckt.");
-                }
-                player.removeItem(command.gibZweitesWort());
-            }
-            else if(command.hasSecondCommand())
-            {
-                System.out.println("Dieses Essen liegt nicht in ihrem Inventar.");
-            }
-            else
-            {
-                System.out.println("Geben Sie eine Nahrung zum Füttern an.");
-            }
+        else if(commandWord.equals("attack")){
+            System.out.println("Es ist kein Gegner mit dir im Raum den du angreifen könntest.");
             return false;
         }
-        
+
         if (commandWord.equals("escape") && isFighting){
             if(command.hasSecondCommand()){
                 int result = currentRoom.tryingToEscape(command.gibZweitesWort());
@@ -254,22 +229,25 @@ class Game
         }
 
         if(isFighting){
-            if(!currentRoom.hasEnemy())
-            {
-                isFighting = false;
-            }
-            else
-            {
-                System.out.println("Du kannst erst nach dem Kampf wieder was anderes machen.");
-                return false;
-            }
+            System.out.println("Du kannst erst nach dem Kampf wieder was anderes machen.");
+            return false;
         }
 
         if (commandWord.equals("help")) {
             hilfstextAusgeben();
         }
         else if (commandWord.equals("go")) {
+            if(player.getSaturation() <= 0){
+                System.out.println("Du verhungerst");
+                player.changeHealth(-10);
+            }
+            else{
+                player.loseSaturation();
+            }
             changeRoom(command);
+        }
+        else if (commandWord.equals("quit") || commandWord.equals("exit") || commandWord.equals("stop")) {
+            moechteBeenden = exit(command);
         }
         else if (commandWord.equals("look")){
             if(command.hasSecondCommand()){
@@ -301,11 +279,9 @@ class Game
                 System.out.println("Was soll auf gehoben werden?");
             }
         }
-        else if (commandWord.equals("feed"))
-        {
-            System.out.println("Du bist nicht im Kampf.");
+        else if (commandWord.equals("heal")){
+            player.heal();  
         }
-    
 
         // ansonsten: Befehl nicht erkannt.
         return moechteBeenden;
@@ -374,8 +350,7 @@ class Game
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
-            
-            player.loseSaturation();
+
             checkForEnemy();
         }
     }
@@ -412,7 +387,7 @@ class Game
             isFighting = true;
         }
     }
-    
+
     private int attack(Weapon weapon){
         if(weapon == null){
             System.out.println("Du hast keine Waffe mit der du angreifen könntest.");
@@ -423,5 +398,10 @@ class Game
         }
         System.out.println("Du hast den Gegner verfehlt");
         return -1;
+    }
+
+    public static void main(String args[]){
+        Game myGame = new Game();
+        myGame.spielen();
     }
 }

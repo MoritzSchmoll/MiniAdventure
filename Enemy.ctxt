@@ -1,11 +1,9 @@
 #BlueJ class context
 comment0.target=Enemy
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Enemy\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=_name\ _description\ _weapon\ _agility\ _health\ _specialFood\ _drop
-comment1.target=Enemy(java.lang.String,\ java.lang.String,\ Weapon,\ int,\ int,\ java.lang.String,\ Item)
+comment1.params=name\ description\ weapon\ agility\ health
+comment1.target=Enemy(java.lang.String,\ java.lang.String,\ Weapon,\ int,\ int)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Enemy\r\n
-comment10.params=
-comment10.target=void\ printStats()
 comment2.params=
 comment2.target=java.lang.String\ getName()
 comment3.params=
@@ -19,7 +17,5 @@ comment6.target=java.lang.String\ getDescription()
 comment7.params=
 comment7.target=Weapon\ getWeapon()
 comment8.params=
-comment8.target=java.lang.String\ getSpecialFood()
-comment9.params=
-comment9.target=Item\ getDrop()
-numComments=11
+comment8.target=void\ printStats()
+numComments=9

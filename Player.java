@@ -41,31 +41,6 @@ public class Player
         return false;
     }
     
-    public boolean hasItem(String itemName)
-    {
-        for(int i = 0; i < inventory.size(); i++)
-        {
-            if(inventory.get(i).getName().equals(itemName))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public void removeItem(String name)
-    {
-        Iterator<Item> it = inventory.iterator();
-        while (it.hasNext()){
-            Item x = it.next();
-            String itemName = x.getName();
-            if(name.equals(itemName)){
-                it.remove();
-                break;
-            }
-        }
-    }
-    
     public void printInventory(){
         if(inventory.size() == 0){
             System.out.println("Dein Rucksack ist leer!");
@@ -117,10 +92,10 @@ public class Player
 
     public void changeSaturation(int change){
         saturation += change;
-        if(saturation <= 0)
-        {
-            changeHealth(-1000);
-        }
+        // if(saturation <= 0)
+        // {
+            // changeHealth(-1000);
+        // }
     }
 
     public int getSaturation(){
@@ -228,4 +203,14 @@ public class Player
         return null;
     }
     
+    public void heal(){
+        if(saturation > 10){
+            health += 10;
+            saturation -= 10;
+            System.out.println("Du hast 10 Lebenspunkt regeneriert und dafür 10 Sättigungspunkte verloren.");
+        }
+        else{
+            System.out.println("Deine Sättigung ist zu gering um dich zu regenerieren.");
+        }
+    }
 }

@@ -14,20 +14,16 @@ public class Enemy
     private Weapon weapon;
     private int agility;
     private int health;
-    private String specialFood;
-    private Item drop;
     /**
      * Constructor for objects of class Enemy
      */
-    public Enemy(String _name, String _description, Weapon _weapon, int _agility, int _health, String _specialFood, Item _drop)
+    public Enemy(String name, String description, Weapon weapon, int agility, int health)
     {
-        agility = _agility;
-        name = _name;
-        description = _description;
-        weapon = _weapon;
-        health = _health;
-        specialFood = _specialFood;
-        drop = _drop;
+        this.agility = agility;
+        this.name = name;
+        this.description = description;
+        this.weapon = weapon;
+        this.health = health;
     }
     public String getName(){
         return name;
@@ -46,14 +42,6 @@ public class Enemy
     }
     public Weapon getWeapon(){
         return weapon;
-    }
-    public String getSpecialFood()
-    {
-        return specialFood;        
-    }
-    public Item getDrop()
-    {
-        return drop;
     }
     public void printStats(){
         System.out.println("  Lebenspunkte: " + health);
