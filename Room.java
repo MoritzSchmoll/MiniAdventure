@@ -79,6 +79,11 @@ class Room
         inventory.add(new Key(name, description, stat));
     }
 
+    private void addItem(Item item)
+    {
+        inventory.add(item);
+    }
+    
     public void addContainer(String name, int sizeLimit)
     {
         container = new Container(name, sizeLimit);
@@ -94,8 +99,8 @@ class Room
         return container;
     }
 
-    public void addEnemy(String name, String description, Weapon weapon, int agility, int health){
-        enemy = new Enemy(name, description, weapon, agility, health);
+    public void addEnemy(String name, String description, Weapon weapon, int agility, int health, String specialFood, Item drop){
+        enemy = new Enemy(name, description, weapon, agility, health, specialFood, drop);
     }
 
     public void removeItem(Item item)
@@ -252,6 +257,20 @@ class Room
         return enemy;
     }
 
+    public boolean feedEnemy(String food)
+    {
+        if(enemy != null && enemy.getSpecialFood().equals(food))
+        {
+            String drop = enemy.getDrop().getName();
+            String enemyName = enemy.getName();
+            System.out.println("Du hast " + enemyName + " im Raum zufriedengestellt. Er hat als Dank einen " + drop + " auf den Boden gelegt.");
+            addItem(enemy.getDrop());
+            enemy = null;
+            return true;
+        }
+        return false;
+    }
+    
     public int enemyAttack(int playerAgility){
         if(rand.nextInt(101) > playerAgility){
             return -enemy.getWeapon().getStat();

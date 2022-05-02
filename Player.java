@@ -9,7 +9,9 @@ import java.util.Random;
  */
 public class Player
 {
+    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     final private int maxInventoryWeight = 50;
+    
     private int health = 20;
     private int saturation = 60;
     private int agility = 50;
@@ -37,6 +39,31 @@ public class Player
             }
         }
         return false;
+    }
+    
+    public boolean hasItem(String itemName)
+    {
+        for(int i = 0; i < inventory.size(); i++)
+        {
+            if(inventory.get(i).getName().equals(itemName))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void removeItem(String name)
+    {
+        Iterator<Item> it = inventory.iterator();
+        while (it.hasNext()){
+            Item x = it.next();
+            String itemName = x.getName();
+            if(name.equals(itemName)){
+                it.remove();
+                break;
+            }
+        }
     }
     
     public void printInventory(){

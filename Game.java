@@ -87,7 +87,13 @@ class Game
         schlafzimmer.addContainer("Kleiderschrank", 2);
 
         //Gegner erschaffen
-        speisekammer.addEnemy("Rattenkönig", "eine riesige Ratte, die so groß ist wie ein Hund", new Weapon("Fleischhammer", "ein großer blutverschmierter Fleischhammer",5), 60, 30);
+        speisekammer.addEnemy("Rattenkönig", //name
+                                "eine riesige Ratte, die so groß ist wie ein Hund", //description
+                                new Weapon("Fleischhammer", "ein großer blutverschmierter Fleischhammer", 5), //weapon
+                                60, //agility
+                                30, //health
+                                "Keks", //food
+                                new Food("Apfel", "ein goldener Apfel", 30)); //drop
 
         currentRoom = garten;  // das Spiel startet in Raum garten
     }
@@ -138,6 +144,11 @@ class Game
             System.out.println("Ich weiss nicht, was Sie meinen ...");
             return false;    
         }    
+        
+        if (commandWord.equals("quit") || commandWord.equals("exit") || commandWord.equals("stop")) {
+            return moechteBeenden = exit(command);
+        }
+        
         if(parser.getCommands().isContainerCommand(commandWord) && !containerIsOpened)    
         {    
             System.out.println("Sie haben keinen Container geöffnet");
@@ -154,7 +165,7 @@ class Game
             handleContainerCommand(command);
             return false;
         }
-
+        
         if(commandWord.equals("open") && !containerIsOpened)
         {
             if(!currentRoom.hasContainer())
@@ -188,6 +199,26 @@ class Game
             return false;
         }
 
+        if (commandWord.equals("feed") && isFighting){
+            if(command.hasSecondCommand() && player.hasItem(command.gibZweitesWort()))
+            {
+                if(!currentRoom.feedEnemy(command.gibZweitesWort())) //aktueller Raum muss einen Gegner haben, da der Spieler bereits im Kampf ist
+                {
+                    System.out.println("Dem Gegner hat diese Nahrung nicht geschmeckt.");
+                }
+                player.removeItem(command.gibZweitesWort());
+            }
+            else if(command.hasSecondCommand())
+            {
+                System.out.println("Dieses Essen liegt nicht in ihrem Inventar.");
+            }
+            else
+            {
+                System.out.println("Geben Sie eine Nahrung zum Füttern an.");
+            }
+            return false;
+        }
+        
         if (commandWord.equals("escape") && isFighting){
             if(command.hasSecondCommand()){
                 int result = currentRoom.tryingToEscape(command.gibZweitesWort());
@@ -223,8 +254,15 @@ class Game
         }
 
         if(isFighting){
-            System.out.println("Du kannst erst nach dem Kampf wieder was anderes machen.");
-            return false;
+            if(!currentRoom.hasEnemy())
+            {
+                isFighting = false;
+            }
+            else
+            {
+                System.out.println("Du kannst erst nach dem Kampf wieder was anderes machen.");
+                return false;
+            }
         }
 
         if (commandWord.equals("help")) {
@@ -232,9 +270,6 @@ class Game
         }
         else if (commandWord.equals("go")) {
             changeRoom(command);
-        }
-        else if (commandWord.equals("quit") || commandWord.equals("exit") || commandWord.equals("stop")) {
-            moechteBeenden = exit(command);
         }
         else if (commandWord.equals("look")){
             if(command.hasSecondCommand()){
@@ -266,14 +301,11 @@ class Game
                 System.out.println("Was soll auf gehoben werden?");
             }
         }
-        else if (commandWord.equals("attack")){
-            if(command.hasSecondCommand()){
-
-            }
-            else{
-                System.out.println("Was soll angegriffen werden?");
-            }
+        else if (commandWord.equals("feed"))
+        {
+            System.out.println("Du bist nicht im Kampf.");
         }
+    
 
         // ansonsten: Befehl nicht erkannt.
         return moechteBeenden;
