@@ -84,18 +84,18 @@ class Game
         küche.addFood("Brot", "trotz das dieses Haus sehr herunter gekommern und verlassen scheint, sieht diese Brot sehr Frisch aus", 20);
         schlafzimmer.addKey("Schlüssel", "ein großer Schlüssel", 2);
         garten.addFood("Apfel", "ein schöner, glänzend roter Apfel", 15);
-        
+
         // Container erschaffen
         schlafzimmer.addContainer("Kleiderschrank", 2);
 
         //Gegner erschaffen
         speisekammer.addEnemy("Rattenkönig", //name
-                                "eine riesige Ratte, die so groß ist wie ein Hund", //description
-                                new Weapon("Fleischhammer", "ein großer blutverschmierter Fleischhammer", 5), //weapon
-                                60, //agility
-                                30, //health
-                                "Keks", //food
-                                new Food("Apfel", "ein goldener Apfel", 30)); //drop
+            "eine riesige Ratte, die so groß ist wie ein Hund", //description
+            new Weapon("Fleischhammer", "ein großer blutverschmierter Fleischhammer", 5), //weapon
+            60, //agility
+            30, //health
+            "Keks", //food
+            new Food("Apfel", "ein goldener Apfel", 30)); //drop
 
         currentRoom = garten;  // das Spiel startet in Raum garten
     }
@@ -146,11 +146,11 @@ class Game
             System.out.println("Ich weiss nicht, was Sie meinen ...");
             return false;    
         }    
-        
+
         if (commandWord.equals("quit") || commandWord.equals("exit") || commandWord.equals("stop")) {
             return moechteBeenden = exit(command);
         }
-        
+
         if(parser.getCommands().isContainerCommand(commandWord) && !containerIsOpened)    
         {    
             System.out.println("Sie haben keinen Container geöffnet");
@@ -167,7 +167,7 @@ class Game
             handleContainerCommand(command);
             return false;
         }
-        
+
         if(commandWord.equals("open") && !containerIsOpened)
         {
             if(!currentRoom.hasContainer())
@@ -223,8 +223,7 @@ class Game
             }
             return false;
         }
-        
-        
+
         
         if (commandWord.equals("escape") && isFighting){
             if(command.hasSecondCommand()){
@@ -276,7 +275,7 @@ class Game
             hilfstextAusgeben();
         }
         else if (commandWord.equals("go")) {
-                        if(player.getSaturation() <= 0){
+            if(player.getSaturation() <= 0){
                 System.out.println("Du verhungerst");
                 player.changeHealth(-10);
             }
@@ -390,8 +389,7 @@ class Game
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
-            
-            player.loseSaturation();
+
             checkForEnemy();
         }
     }
@@ -428,7 +426,7 @@ class Game
             isFighting = true;
         }
     }
-    
+
     private int attack(Weapon weapon){
         if(weapon == null){
             System.out.println("Du hast keine Waffe mit der du angreifen könntest.");
@@ -440,7 +438,7 @@ class Game
         System.out.println("Du hast den Gegner verfehlt");
         return -1;
     }
-    
+
     public static void main(String args[]){
         Game myGame = new Game();
         myGame.spielen();
