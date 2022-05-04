@@ -11,7 +11,7 @@ public class Player
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     final private int maxInventoryWeight = 50;
-    
+
     private int health = 20;
     private int saturation = 60;
     private int agility = 50;
@@ -20,7 +20,8 @@ public class Player
     private boolean hasWeapon = false;
     private ArrayList<Item> inventory;
     /**
-     * Konstruktor für Objekte der Klasse player
+     * Konstruktor für Objekte der Klasse Player
+     * Hier wird das Anfangsinventar des Spielers zusammen gestellt.
      */
     public Player()
     {
@@ -29,6 +30,9 @@ public class Player
             inventory.add(new Food("Keks", "leckerer Keks, welcher 10 Sättigungspunkte wieder herstellt", 10));
     }
 
+    /**
+     * Untersucht ob der Spieler einen Schlüssel im Inventar hat.
+     */
     public boolean hasKey()
     {
         for(int i = 0; i < inventory.size(); i++)
@@ -40,7 +44,10 @@ public class Player
         }
         return false;
     }
-    
+
+    /**
+     * Überprüft ob der Spieler ein Gegenstand mit dem Übergebenen Namen im Inventar hat.
+     */
     public boolean hasItem(String itemName)
     {
         for(int i = 0; i < inventory.size(); i++)
@@ -52,7 +59,10 @@ public class Player
         }
         return false;
     }
-    
+
+    /**
+     * Entfernt ein Gegenstand mit dem übergebenen Namen.
+     */
     public void removeItem(String name)
     {
         Iterator<Item> it = inventory.iterator();
@@ -65,7 +75,10 @@ public class Player
             }
         }
     }
-    
+
+    /**
+     * Zählt über die Konsole alle Gegenstände die im Spieler Inventar vorhanden sind auf.
+     */
     public void printInventory(){
         if(inventory.size() == 0){
             System.out.println("Dein Rucksack ist leer!");
@@ -78,19 +91,30 @@ public class Player
         }
     }
 
+    /**
+     * Gibt über die Konsole alle Spielerinformationen aus.
+     */
     public void printStats(){
         System.out.println("Lebenspunkte: " + health);
         System.out.println("Sättigung: " + saturation);
         System.out.println("Beweglichkeit: " + agility);
     }
 
+    /**
+     * Sorgt dafür, dass der Spieler mit einer Wahrscheinlichkeit von 50% 10 Sättigungspunkte verliert.
+     */
     public void loseSaturation(){
         if(rand.nextInt(10) < 4){
             changeSaturation(-10);
             System.out.println("Du hast durch die Anstrengung beim Laufen 10 Sättigungspunkte verloren");
         }
     }
-    
+
+    /**
+     * Mit dieser Methode kann der Spieler essen.
+     * Wobei immer so viele Sättigungspunkte hergestellt werden wie das Essen als Wert über gibt.
+     * Außerdem wird kontrolliert ob die Sättigung nicht schon bei 90 oder höher liegt. Wenn das der Fall ist kann nichts mehr gegessen werden.
+     */
     public void eat(String name){
         if(saturation >= 90){
             System.out.println("Du hast keinen Hunger");
@@ -115,14 +139,23 @@ public class Player
         }
     }
 
+    /**
+     * Verändert die Sättigung um den übergebenen Wert.
+     */
     public void changeSaturation(int change){
         saturation += change;
     }
 
+    /**
+     * Gibt die Sättigung zurück.
+     */
     public int getSaturation(){
         return saturation;
     }
-    
+
+    /**
+     * Wenn der Spieler mehr als 10 Sättigungspunkte besitzt werden 10 Lebenspunkte unter Verbrauch von 10 Sättigungspunkten hergestellt.
+     */
     public void heal(){
         if(saturation > 10){
             health += 10;
@@ -133,7 +166,10 @@ public class Player
             System.out.println("Deine Sättigung ist zu gering um dich zu regenerieren.");
         }
     }
-    
+
+    /**
+     * Verändert die Lebenspunkte um den übergebenen Wert und informiert über diese Veränderung mit Text über die Konsole.
+     */
     public void changeHealth(int change){
         health += change;
         if(change > 0){
@@ -142,7 +178,7 @@ public class Player
         }
         else if(change < 0){
             if(health < 0)
-            health = 0;
+                health = 0;
             System.out.println("Du hast " + Math.abs(change) + " Schadenspunkte erhalten");
             System.out.println("Jetzt besitzt du " + health + " Lebenspunkte");
         }
@@ -151,30 +187,49 @@ public class Player
             System.exit(0);
         }
     }
-    
+
+    /**
+     * Gibt die aktuelle Anzahl an Lebenspunkten wieder.
+     */
     public int getHealth(){
         return health;
     }
 
+    /**
+     * Gibt die aktuelle Anzahl an Beweglichkeitspunkten wieder.
+     */
     public int getAgility(){
         return agility;
     }
-    
+
+    /**
+     * Überprüft ob der Spieler eine Waffe besitzt.
+     */
     public boolean hasWeapon()
     {
         return hasWeapon;
     }
-    
+
+    /**
+     * Fügt denn übergebenen Gegenstand dem Spieler Inverntar hinzu.
+     */
     public boolean pickUp(Item newItem)
     {
         return pickUp(newItem, null, true);
     }
-    
+
+    /**
+     * Fügt denn übergebenen Gegenstand dem Spieler Inverntar hinzu unter Berücksichtigung des Raumes. (Nötig für Container)
+     */
     public boolean pickUp(Item newItem, Room currentRoom)
     {
         return pickUp(newItem, currentRoom, false);
     }
-    
+
+    /**
+     * Dies ist die eigentliche Methode zum hinzufügen von Gegenständen in der noch überprüft wird ob der Spieler schon eine Waffe hat und verbietet es eine aufzuheben, wenn er schon eine besizt.
+     * Des Weiteren wird das Löschen des Gegenstandes an seinem jetzigen Standort in Auftrag gegeben.
+     */
     public boolean pickUp(Item newItem, Room currentRoom, boolean isItemInContainer){
         if(newItem != null && newItem.getType() != 1){
             inventory.add(newItem);
@@ -198,8 +253,10 @@ public class Player
         }
         return false;
     }
-    
-    /** @author Moritz */
+
+    /**
+     * Ermöglicht es dem Spieler Gegenstände in Container zu legen.
+     */
     public boolean putItemInContainer(Container container, String itemName)
     {
         Iterator<Item> it = inventory.iterator();
@@ -220,7 +277,10 @@ public class Player
         }
         return false;
     }
-    
+
+    /**
+     * Gibt die aktuelle Waffe des Spielers zurück.
+     */
     public Weapon returnWeapon(){
         Iterator<Item> it = inventory.iterator();
         Item item = null;
@@ -234,5 +294,5 @@ public class Player
         } 
         return null;
     }
-    
+
 }
