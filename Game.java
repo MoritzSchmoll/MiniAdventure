@@ -326,6 +326,9 @@ class Game
         return moechteBeenden;
     }
 
+    /** 
+        Überprüft den Befehl, wenn aktuelle ein Container vom Spieler geöffnet ist und somit nur bestimmte Befehle verwendet werden können. 
+       **/
     private void handleContainerCommand(Befehl command)
     {
         if(command.gibBefehlswort().equals("put"))
@@ -348,8 +351,6 @@ class Game
         }
     }
 
-    // Implementierung der Benutzercommande:
-
     /**
      * Gib Hilfsinformationen aus.
      * Hier geben wir eine etwas alberne und unklare Beschreibung
@@ -367,6 +368,8 @@ class Game
      * Versuche, in eine Richtung zu gehen. Wenn es einen Ausgang gibt,
      * wechsele in den neuen Raum, ansonsten gib eine Fehlermeldung
      * aus.
+     * 
+     * Überprüft ebenso, ob ein Schlüssel für die Tür benötigt wird.
      */
     private void changeRoom(Befehl command) 
     {
@@ -411,14 +414,24 @@ class Game
         }
     }
 
+    /**
+     * Drucke alle Gegenstände und Container, die sich im Raum befinden.
+     */
     private void lookForItemsInRoom (){
         currentRoom.printAlleGegenstaende();
     }
 
+    /**
+     * Gibt die Beschreibung eines bestimmten Gegenstandes im Raum aus
+     */
     private void lookForItem(String name){
         System.out.println(currentRoom.getItemDescription(name)); 
     }
 
+    /**
+     * Überprüfe, ob sich ein Gegner im neu betretenen Raum befindet und setze in dem Fall den Spieler in den Kampf-Modus.
+     */
+    
     private void checkForEnemy(){
         if(currentRoom.hasEnemy()){
             System.out.println("Es befindet sich ein Gegner mit dir im Raum.");
@@ -427,6 +440,11 @@ class Game
         }
     }
 
+    /**
+     * Veranlasse den Angriff an einen Gegner und überprüfe, ob der Spieler überhaupt eine Waffe hat.
+     * Der Angriff ist nur für eine bestimmte Wahrscheinlichkeit erfolgreich.
+     */
+    
     private int attack(Weapon weapon){
         if(weapon == null){
             System.out.println("Du hast keine Waffe mit der du angreifen könntest.");

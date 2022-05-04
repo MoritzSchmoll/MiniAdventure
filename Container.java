@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 /**
- * Write a description of class Container here.
+ * Container stellen Behältnisse, die Gegenstände beinhalten können, die der Spieler nehmen kann.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Moritz
+ * 
  */
 public class Container
 {
@@ -21,10 +21,17 @@ public class Container
         contents = new ArrayList<>();
     }
     
+    
+    /**
+     * Gibt den Namen des Containers zurück
+     */
     public String getName(){
         return name;
     }
     
+    /**
+     * Druckt die Inhalte des Containers einzeln, falls dieser Gegenstände in sich trägt. Ansonsten wird gedruckt, dass dieser leer ist.
+     */
     public void printContents()
     {
         if(contents.isEmpty())
@@ -41,6 +48,9 @@ public class Container
         }
     }
     
+    /**
+     * Fügt einen Gegenstand zum Container hinzu
+     */
     public void addItem(Item item)
     {
         if(contents.size() <= sizeLimit)
@@ -50,6 +60,10 @@ public class Container
         System.out.println(item.getName() + " wurde " + name + " hinzugefügt");
     }
     
+    
+    /**
+     * Nimmt einen Gegenstand aus dem Container, fügt diesen dem Inventar des Spielers hinzu und überprüft, ob der Spieler bereits eine Waffe hat, wenn er eine neue aufheben will.
+     */
     public Item takeItem(String itemName, boolean hasWeapon)
     {
         Item item;
@@ -57,12 +71,12 @@ public class Container
         while(it.hasNext())
         {
             item = it.next();
-            if(item.getName().equals(itemName) && ((item.getType() == 1 && !hasWeapon) || item.getType() != 1))
+            if(item.getName().equals(itemName) && ((item instanceof Weapon && !hasWeapon) || !(item instanceof Weapon)))
             {
                 it.remove();
                 return item;
             }
-            if(item.getName().equals(itemName) && hasWeapon && item.getType() == 1)
+            if(item.getName().equals(itemName) && hasWeapon && item instanceof Weapon)
             {
                 System.out.println("Du hast kannst nur eine Waffe tragen und keine weitere aufheben");
                 return null;
