@@ -17,7 +17,8 @@ public class Enemy
     private String specialFood;
     private Item drop;
     /**
-     * Constructor for objects of class Enemy
+     * Konstruktor für Objekte der Klasse Enemy
+     * Gibt dem Gegner seine Startwerte.
      */
     public Enemy(String _name, String _description, Weapon _weapon, int _agility, int _health, String _specialFood, Item _drop)
     {
@@ -29,32 +30,68 @@ public class Enemy
         specialFood = _specialFood;
         drop = _drop;
     }
+    
+    /**
+     * Gibt den Namen zurück.
+     */
     public String getName(){
         return name;
     }
+    
+    /**
+     * Gibt die aktuellen Lebenspunkte zurück.
+     */
     public int getHealth(){
         return health;
     }
+    
+    /**
+     * Verändert die Lebenspunkte um den übergebenen Wert.
+     */
     public void changeHealth(int change){
         health += change;
     }
+    
+    /**
+     * Gibt die aktuelle Beweglichkeit zurück.
+     */
     public int getAgility(){
         return agility;
     }
+    
+    /**
+     * Gibt die Beschreibung des Gegners zurück.
+     */
     public String getDescription(){
         return description;
     }
+    
+    /**
+     * Gibt die Waffe des Gegners zurück.
+     */
     public Weapon getWeapon(){
         return weapon;
     }
+    
+    /**
+     * Gibt das Lieblingsessen des Gegners zurück.
+     */
     public String getSpecialFood()
     {
         return specialFood;        
     }
+    
+    /**
+     * Gibt zurück was der Gegner fallen lässt.
+     */
     public Item getDrop()
     {
         return drop;
     }
+    
+    /**
+     * Gibt die Informationen über den Gegner in der Konsole aus.
+     */
     public void printStats(){
         System.out.println("  Lebenspunkte: " + health);
         System.out.println("  Beweglichkeit: " + agility);
