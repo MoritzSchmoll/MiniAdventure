@@ -18,6 +18,7 @@ comment13.target=int\ attack(Weapon)
 comment13.text=\r\n\ Veranlasse\ den\ Angriff\ an\ einen\ Gegner\ und\ \u00FCberpr\u00FCfe,\ ob\ der\ Spieler\ \u00FCberhaupt\ eine\ Waffe\ hat.\r\n\ Der\ Angriff\ ist\ nur\ f\u00FCr\ eine\ bestimmte\ Wahrscheinlichkeit\ erfolgreich.\r\n
 comment14.params=args
 comment14.target=void\ main(java.lang.String[])
+comment14.text=\r\n\ Ist\ f\u00FCr\ das\ Ausf\u00FChren\ des\ Programmes\ nach\ dem\ Exportieren\ wichtig.\r\n
 comment2.params=
 comment2.target=void\ raeumeAnlegen()
 comment2.text=\r\n\ Erzeuge\ alle\ R\u00E4ume\ und\ verbinde\ ihre\ Ausg\u00E4nge\ miteinander.\r\n

@@ -9,6 +9,7 @@ comment2.target=Befehl\ liefereBefehl()
 comment2.text=\r\n\ @return\ \ den\ n\u00E4chsten\ Befehl\ des\ Benutzers\r\n
 comment3.params=
 comment3.target=Befehlswoerter\ getCommands()
+comment3.text=\r\n\ Gibt\ alle\ g\u00FCltigen\ Befehle\ wieder.\r\n
 comment4.params=
 comment4.target=void\ zeigeBefehle()
 comment4.text=\r\n\ Gib\ eine\ Liste\ der\ bekannten\ Befehlsw\u00F6rter\ aus.\r\n

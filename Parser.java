@@ -67,9 +67,12 @@ class Parser
         }
     }
     
-    public Befehlswoerter getCommands()	
-    {	
-        return befehle;	
+    /**
+     * Gibt alle gültigen Befehle wieder.
+     */
+    public Befehlswoerter getCommands()    
+    {    
+        return befehle;    
     }
 
     /**
