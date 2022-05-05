@@ -79,11 +79,11 @@ class Game
         rutsche.setExit("east", waffenkammer);
 
         // Gegenstände verteilen
-        küche.addWeapon("Messer", "ein großes scharfes Küchenmesser", 10);
-        küche.addWeapon("Keule", "eine große tödliche Keule", 10);
-        küche.addFood("Brot", "trotz das dieses Haus sehr herunter gekommern und verlassen scheint, sieht diese Brot sehr Frisch aus", 20);
-        schlafzimmer.addKey("Schlüssel", "ein großer Schlüssel", 2);
-        garten.addFood("Apfel", "ein schöner, glänzend roter Apfel", 15);
+        küche.addItem(new Weapon("Messer", "ein großes scharfes Küchenmesser", 10, 4));
+        küche.addItem(new Weapon("Keule", "eine große tödliche Keule", 10, 6));
+        küche.addItem(new Food("Brot", "trotz das dieses Haus sehr herunter gekommern und verlassen scheint, sieht diese Brot sehr Frisch aus", 20, 2));
+        schlafzimmer.addItem(new Item("Schlüssel", "ein großer Schlüssel", 2, 1));
+        garten.addItem(new Food("Apfel", "ein schöner, glänzend roter Apfel", 15, 2));
 
         // Container erschaffen
         schlafzimmer.addContainer("Kleiderschrank", 2);
@@ -91,11 +91,11 @@ class Game
         //Gegner erschaffen
         speisekammer.addEnemy("Rattenkönig", //name
             "eine riesige Ratte, die so groß ist wie ein Hund", //description
-            new Weapon("Fleischhammer", "ein großer blutverschmierter Fleischhammer", 5), //weapon
+            new Weapon("Fleischhammer", "ein großer blutverschmierter Fleischhammer", 5, 5), //weapon
             60, //agility
             30, //health
             "Keks", //food
-            new Food("Apfel", "ein goldener Apfel", 30)); //drop
+            new Food("Apfel", "ein goldener Apfel", 30, 2)); //drop
 
         currentRoom = garten;  // das Spiel startet in Raum garten
     }

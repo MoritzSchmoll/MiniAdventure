@@ -64,33 +64,9 @@ class Room
     }
 
     /**
-     * Fügt dem Raum einen Gegenstand der Klasse Food hinzu.
+     * Fügt dem Raum den gegebenen Gegenstand hinzu.
      */
-    public void addFood(String name, String description, int stat)
-    {
-        inventory.add(new Food(name, description, stat));
-    }
-    
-    /**
-     * Fügt dem Raum einen Gegenstand der Klasse Weapon hinzu.
-     */
-    public void addWeapon(String name, String description, int stat)
-    {
-        inventory.add(new Weapon(name, description, stat));
-    }
-
-    /**
-     * Fügt dem Raum einen Gegenstand der Klasse Key hinzu.
-     */
-    public void addKey(String name, String description, int stat)
-    {
-        inventory.add(new Key(name, description, stat));
-    }
-
-    /**
-     * Fügt dem Raum einen beliebigen Gegenstand hinzu.
-     */
-    private void addItem(Item item)
+    public void addItem(Item item)
     {
         inventory.add(item);
     }
