@@ -21,7 +21,6 @@ public class Container
         contents = new ArrayList<>();
     }
     
-    
     /**
      * Gibt den Namen des Containers zurück
      */
@@ -53,7 +52,7 @@ public class Container
      */
     public void addItem(Item item)
     {
-        if(contents.size() <= sizeLimit)
+        if(contents.size() < sizeLimit)
         {
             contents.add(item);
         }

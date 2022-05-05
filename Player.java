@@ -10,15 +10,16 @@ import java.util.Random;
 public class Player
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    final private int maxInventoryWeight = 50;
+    final private int maxInventoryWeight = 15;
 
     private int health = 20;
     private int saturation = 60;
     private int agility = 50;
-    private int inventoryWeight = 0;
+    private int weight = 0;
     private Random rand = new Random();
     private boolean hasWeapon = false;
     private ArrayList<Item> inventory;
+
     /**
      * Konstruktor für Objekte der Klasse Player
      * Hier wird das Anfangsinventar des Spielers zusammen gestellt.
@@ -196,10 +197,10 @@ public class Player
     }
 
     /**
-     * Gibt die aktuelle Anzahl an Beweglichkeitspunkten wieder.
+     * Gibt die aktuelle Anzahl an Beweglichkeitspunkten unter Berücksichtigung des Gewichts wieder.
      */
     public int getAgility(){
-        return agility;
+        return agility+updateWeight();
     }
 
     /**
@@ -211,7 +212,7 @@ public class Player
     }
 
     /**
-     * Fügt denn übergebenen Gegenstand dem Spieler Inverntar hinzu.
+     * Fügt denn übergebenen Gegenstand dem Spieler Inventar hinzu.
      */
     public boolean pickUp(Item newItem)
     {
@@ -219,7 +220,7 @@ public class Player
     }
 
     /**
-     * Fügt denn übergebenen Gegenstand dem Spieler Inverntar hinzu unter Berücksichtigung des Raumes. (Nötig für Container)
+     * Fügt denn übergebenen Gegenstand dem Spieler Inventar hinzu unter Berücksichtigung des Raumes. (Nötig für Container)
      */
     public boolean pickUp(Item newItem, Room currentRoom)
     {
@@ -229,33 +230,45 @@ public class Player
     /**
      * Dies ist die eigentliche Methode zum hinzufügen von Gegenständen in der noch überprüft wird ob der Spieler schon eine Waffe hat und verbietet es eine aufzuheben, wenn er schon eine besizt.
      * Des Weiteren wird das Löschen des Gegenstandes an seinem jetzigen Standort in Auftrag gegeben.
+     * Das Maximalgewicht darf ebenso nicht überschritten werden.
      */
     public boolean pickUp(Item newItem, Room currentRoom, boolean isItemInContainer){
-        if(newItem != null && newItem.getType() != 1){
-            inventory.add(newItem);
-            System.out.println("Du hast " + newItem.getName() + " aufgehoben");
-            return true;
-        }
-        else if(newItem != null && newItem.getType() == 1){
-            if(hasWeapon == false){
+        if(newItem != null && updateWeight() + newItem.getWeight() < maxInventoryWeight)
+        {
+            if(newItem.getType() != 1)
+            {
                 inventory.add(newItem);
-                if(!isItemInContainer)
-                {
-                    currentRoom.removeItem(newItem);
-                }
-                hasWeapon = true;
                 System.out.println("Du hast " + newItem.getName() + " aufgehoben");
+                return true;
             }
-            else{
-                System.out.println("Du hast schon eine Waffe im Inventar, um eine neue aufzuheben musst du deine jetzige ablegen.");
+            else if(newItem.getType() == 1){
+                if(hasWeapon == false)
+                {
+                    inventory.add(newItem);
+                    if(!isItemInContainer)
+                    {
+                        currentRoom.removeItem(newItem);
+                    }
+                    hasWeapon = true;
+                    System.out.println("Du hast " + newItem.getName() + " aufgehoben");
+                    return true;
+                }
+                else
+                {
+                    System.out.println("Du hast schon eine Waffe im Inventar, um eine neue aufzuheben musst du deine jetzige ablegen.");
+                    return false;
+                }
             }
-            return true;
+        }
+        else
+        {
+            System.out.println("Du bist dafür zu schwer!");
         }
         return false;
     }
 
     /**
-     * Ermöglicht es dem Spieler Gegenstände in Container zu legen.
+     * Ermöglicht es dem Spieler Gegenstände in den Container zu legen.
      */
     public boolean putItemInContainer(Container container, String itemName)
     {
@@ -278,6 +291,19 @@ public class Player
         return false;
     }
 
+    /**
+     * Aktualisiert das Gewicht des Inventars des Spielers.
+     */
+    private int updateWeight()
+    {
+        weight = 0;
+        for(int i = 0; i < inventory.size(); i++)
+        {
+            weight += inventory.get(i).getWeight();
+        }
+        return weight;
+    }
+    
     /**
      * Gibt die aktuelle Waffe des Spielers zurück.
      */
