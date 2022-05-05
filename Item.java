@@ -13,7 +13,8 @@ public class Item
     protected int type;
     protected int weight;
     /**
-     * Constructor for objects of class Gegenstände
+     * Konstruktor für Objekte der Klasse Item
+     * Hier werden den Gegenständen ihre Daten übergeben.
      */
     public Item(String _name, String _description, int _stat, int _weight)
     {
@@ -23,23 +24,38 @@ public class Item
         weight = _weight;
     }
     
+    /**
+     * Gibt den Namen zurück.
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * Gibt die Beschreibung zurück.
+     */
     public String getDescription(){
         return description;
     }
     
+    /**
+     * Gibt einen bestimmten Wert zurück, der nach Art des Gegenstandes unterschiedlich benutzt werden kann.
+     */
     public int getStat(){
         return stat;
     }
     
+    /**
+     * Gibt den Typen des Gegenstandes zurück.
+     */
     public int getType()
     {
         return type;
     }
     
+    /**
+     * Gibt das Gewicht des Gegenstandes zurück.
+     */
     public int getWeight()
     {
         return weight;

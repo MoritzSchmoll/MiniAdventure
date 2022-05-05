@@ -15,8 +15,4 @@ public class Key extends Item
         super(name, beschreibung, ability, weight);
     }
     
-    public void useItem()
-    {
-        stat--;
-    }
 }

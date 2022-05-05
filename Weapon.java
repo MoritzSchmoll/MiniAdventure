@@ -14,14 +14,5 @@ public class Weapon extends Item
     public Weapon (String name, String beschreibung, int damage, int weight)
     {
         super(name, beschreibung, damage, weight);
-        rand = new Random();
     } 
-    public int attack(int agility){
-        if(rand.nextInt(100) > agility){
-            return stat;
-        }
-        else{
-            return stat;
-        }
-    }
 }

@@ -4,6 +4,4 @@ comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Weapons.\r\n\ \r\n\ @au
 comment1.params=name\ beschreibung\ damage\ weight
 comment1.target=Weapon(java.lang.String,\ java.lang.String,\ int,\ int)
 comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ Weapon\r\n
-comment2.params=agility
-comment2.target=int\ attack(int)
-numComments=3
+numComments=2

@@ -4,6 +4,4 @@ comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Mysterious.\r\n\ \r\n\ 
 comment1.params=name\ beschreibung\ ability\ weight
 comment1.target=Key(java.lang.String,\ java.lang.String,\ int,\ int)
 comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ Mysterious\r\n
-comment2.params=
-comment2.target=void\ useItem()
-numComments=3
+numComments=2
