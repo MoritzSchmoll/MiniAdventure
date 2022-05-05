@@ -20,7 +20,7 @@
  * @version 2016.02.29
  */
 
-class Befehl
+class Command
 {
     private String befehlswort;
     private String zweitesWort;
@@ -33,7 +33,7 @@ class Befehl
      *                     vom Spiel erkannt gekennzeichnet werden soll.
      * @param zweitesWort  das zweite Wort des Befehls
      */
-    public Befehl(String erstesWort, String zweitesWort)
+    public Command(String erstesWort, String zweitesWort)
     {
         befehlswort = erstesWort;
         this.zweitesWort = zweitesWort;
@@ -45,7 +45,7 @@ class Befehl
      * 'null'.
      * @return  das Befehlswort
      */
-    public String gibBefehlswort()
+    public String getCommand()
     {
         return befehlswort;
     }

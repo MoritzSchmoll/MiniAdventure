@@ -6,37 +6,37 @@ import java.util.Scanner;
  * Adventure-Game.
  *
  * Dieser Parser liest Benutzereingaben und wandelt sie in
- * Befehle für das Adventure-Game um. Bei jedem Aufruf
+ * Commande für das Adventure-Game um. Bei jedem Aufruf
  * liest er eine Zeile von der Konsole und versucht, diese als
- * einen Befehl aus bis zu zwei Wörtern zu interpretieren. Er
- * liefert den Befehl als ein Objekt der Klasse Befehl zurück.
+ * einen Command aus bis zu zwei Wörtern zu interpretieren. Er
+ * liefert den Command als ein Objekt der Klasse Command zurück.
  * 
- * Der Parser verfügt über einen Satz an bekannten Befehlen. Er
- * vergleicht die Eingabe mit diesen Befehlen. Wenn die Eingabe
- * keinen bekannten Befehl enthält, dann liefert der Parser ein als 
- * unbekannter Befehl gekennzeichnetes Objekt zurück.
+ * Der Parser verfügt über einen Satz an bekannten Commanden. Er
+ * vergleicht die Eingabe mit diesen Commanden. Wenn die Eingabe
+ * keinen bekannten Command enthält, dann liefert der Parser ein als 
+ * unbekannter Command gekennzeichnetes Objekt zurück.
  * 
  * @author  Michael Kölling und David J. Barnes
  * @version 2016.02.29
  */
 class Parser 
 {
-    private Befehlswoerter befehle;  // hält die gültigen Befehlswörter
-    private Scanner leser;         // Lieferant für eingegebene Befehle
+    private CommandWords commandWords;  // hält die gültigen Commandswörter
+    private Scanner leser;         // Lieferant für eingegebene Commande
 
     /**
-     * Erzeuge einen Parser, der Befehle von der Konsole einliest.
+     * Erzeuge einen Parser, der Commande von der Konsole einliest.
      */
     public Parser() 
     {
-        befehle = new Befehlswoerter();
+        commandWords = new CommandWords();
         leser = new Scanner(System.in);
     }
 
     /**
-     * @return  den nächsten Befehl des Benutzers
+     * @return  den nächsten Command des Benutzers
      */
-    public Befehl liefereBefehl() 
+    public Command liefereCommand() 
     {
         String eingabezeile;   // für die gesamte Eingabezeile
         String wort1 = null;
@@ -56,30 +56,30 @@ class Parser
             }
         }
         
-        // Jetzt prüfen, ob der Befehl bekannt ist. Wenn ja, erzeugen
-        // wir das passende Befehl-Objekt. Wenn nicht, erzeugen wir
-        // einen unbekannten Befehl mit 'null'.
-        if(befehle.istBefehl(wort1)) {
-            return new Befehl(wort1, wort2);
+        // Jetzt prüfen, ob der Command bekannt ist. Wenn ja, erzeugen
+        // wir das passende Command-Objekt. Wenn nicht, erzeugen wir
+        // einen unbekannten Command mit 'null'.
+        if(commandWords.isCommand(wort1)) {
+            return new Command(wort1, wort2);
         }
         else {
-            return new Befehl(null, wort2);
+            return new Command(null, wort2);
         }
     }
     
     /**
-     * Gibt alle gültigen Befehle wieder.
+     * Gibt alle gültigen Commande wieder.
      */
-    public Befehlswoerter getCommands()    
+    public CommandWords getCommandWords()    
     {    
-        return befehle;    
+        return commandWords;    
     }
 
     /**
-     * Gib eine Liste der bekannten Befehlswörter aus.
+     * Gib eine Liste der bekannten Commandswörter aus.
      */
-    public void zeigeBefehle()
+    public void zeigeCommande()
     {
-        befehle.alleAusgeben();
+        commandWords.printAll();
     }
 }

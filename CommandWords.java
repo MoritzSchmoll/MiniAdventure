@@ -11,7 +11,7 @@
  * @version 2016.02.29
  */
 
-class Befehlswoerter
+class CommandWords
 {
     // ein konstantes Array mit den gültigen Befehlswörtern
     
@@ -25,7 +25,7 @@ class Befehlswoerter
     /**
      * Konstruktor - initialisiere die Befehlswörter.
      */
-    public Befehlswoerter()
+    public CommandWords()
     {
         // nichts zu tun momentan...
     }
@@ -36,7 +36,7 @@ class Befehlswoerter
      * @return true  wenn die gegebene Zeichenkette ein gültiger
      *               Befehl ist, false sonst
      */
-    public boolean istBefehl(String eingabe)
+    public boolean isCommand(String eingabe)
     {
          for(int i = 0; i < VALID_COMMANDS.length; i++) {    
             if(VALID_COMMANDS[i].equals(eingabe)) 
@@ -63,7 +63,7 @@ class Befehlswoerter
     /**
      * Gib alle gültigen Befehlswörter auf die Konsole aus.
      */
-    public void alleAusgeben() 
+    public void printAll() 
     {
         for(String befehl : VALID_COMMANDS) {
             System.out.print(befehl + "  ");

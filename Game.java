@@ -11,7 +11,7 @@ import java.util.Random;
  * 
  *  Diese Instanz dieser Klasse erzeugt und initialisiert alle
  *  anderen Objekte der Anwendung: Sie legt alle Räume und einen
- *  Parser an und startet das Spiel. Sie wertet auch die Befehle
+ *  Parser an und startet das Spiel. Sie wertet auch die Commande
  *  aus, die der Parser liefert und sorgt für ihre Ausführung.
  * 
  * @author  auf Grundlage von Michael Kölling und David J. Barnes
@@ -108,13 +108,13 @@ class Game
     {            
         willkommenstextAusgeben();
 
-        // Die Hauptschleife. Hier lesen wir wiederholt Befehle ein
+        // Die Hauptschleife. Hier lesen wir wiederholt Commande ein
         // und führen sie aus, bis das Spiel beendet wird.
 
         boolean beendet = false;
         while (! beendet) {
-            Befehl command = parser.liefereBefehl();
-            beendet = verarbeiteBefehl(command);
+            Command command = parser.liefereCommand();
+            beendet = verarbeiteCommand(command);
         }
         System.out.println("Danke fürs Spielen. Auf Wiedersehen.");
     }
@@ -133,15 +133,15 @@ class Game
     }
 
     /**
-     * Verarbeite einen gegebenen Befehl (führe ihn aus).
-     * @param command  der zu verarbeitende Befehl.
-     * @return        true, wenn der Befehl das Spiel beendet, 
+     * Verarbeite einen gegebenen Command (führe ihn aus).
+     * @param command  der zu verarbeitende Command.
+     * @return        true, wenn der Command das Spiel beendet, 
      *                false sonst
      */
-    private boolean verarbeiteBefehl(Befehl command) 
+    private boolean verarbeiteCommand(Command command) 
     {
         boolean moechteBeenden = false;
-        String commandWord = command.gibBefehlswort();
+        String commandWord = command.getCommand();
         if(command.istUnbekannt()) {
             System.out.println("Ich weiss nicht, was Sie meinen ...");
             return false;    
@@ -151,7 +151,7 @@ class Game
             return moechteBeenden = exit(command);
         }
 
-        if(parser.getCommands().isContainerCommand(commandWord) && !containerIsOpened)    
+        if(parser.getCommandWords().isContainerCommand(commandWord) && !containerIsOpened)    
         {    
             System.out.println("Sie haben keinen Container geöffnet");
             return false;
@@ -178,7 +178,7 @@ class Game
             else if(command.hasSecondCommand() && command.gibZweitesWort().equals(currentRoom.getContainer().getName()))
             {
                 currentRoom.container.printContents();
-                System.out.println("Mögliche Befehle: close, put, take");
+                System.out.println("Mögliche Commande: close, put, take");
                 containerIsOpened = true;
                 return false;
             }
@@ -322,23 +322,23 @@ class Game
         {
             player.heal();  
         }
-        // ansonsten: Befehl nicht erkannt.
+        // ansonsten: Command nicht erkannt.
         return moechteBeenden;
     }
 
     /** 
-        Überprüft den Befehl, wenn aktuelle ein Container vom Spieler geöffnet ist und somit nur bestimmte Befehle verwendet werden können. 
+        Überprüft den Command, wenn aktuelle ein Container vom Spieler geöffnet ist und somit nur bestimmte Commande verwendet werden können. 
        **/
-    private void handleContainerCommand(Befehl command)
+    private void handleContainerCommand(Command command)
     {
-        if(command.gibBefehlswort().equals("put"))
+        if(command.getCommand().equals("put"))
         {
             if(!player.putItemInContainer(currentRoom.getContainer(), command.gibZweitesWort()))
             {
                 System.out.println("Dieser Gegenstand liegt nicht in deinem Inventar!");
             }
         }
-        else if(command.gibBefehlswort().equals("take"))
+        else if(command.getCommand().equals("take"))
         {
             if(!player.pickUp(currentRoom.getContainer().takeItem(command.gibZweitesWort(), player.hasWeapon()), currentRoom))
             {
@@ -354,14 +354,14 @@ class Game
     /**
      * Gib Hilfsinformationen aus.
      * Hier geben wir eine etwas alberne und unklare Beschreibung
-     * aus, sowie eine Liste der Befehlswörter.
+     * aus, sowie eine Liste der Commandswörter.
      */
     private void hilfstextAusgeben() 
     {
         System.out.println("Sie wissen nicht was zu tun ist, Sie sind allein?");
         System.out.println();
-        System.out.println("Ihnen stehen folgende Befehle zur Verfügung:");
-        parser.zeigeBefehle();
+        System.out.println("Ihnen stehen folgende Commande zur Verfügung:");
+        parser.zeigeCommande();
     }
 
     /**
@@ -371,7 +371,7 @@ class Game
      * 
      * Überprüft ebenso, ob ein Schlüssel für die Tür benötigt wird.
      */
-    private void changeRoom(Befehl command) 
+    private void changeRoom(Command command) 
     {
         if(!command.hasSecondCommand()) {
             // Gibt es kein zweites Wort, wissen wir nicht, wohin...
@@ -398,12 +398,12 @@ class Game
     }
 
     /**
-     * "quit" wurde eingegeben. Überprüfe den Rest des Befehls,
+     * "quit" wurde eingegeben. Überprüfe den Rest des Commands,
      * ob das Spiel wirklich beendet werden soll.
-     * @return  true, wenn der Befehl das Spiel beendet, 
+     * @return  true, wenn der Command das Spiel beendet, 
      *          false sonst
      */
-    private boolean exit(Befehl command) 
+    private boolean exit(Command command) 
     {
         if(command.hasSecondCommand()) {
             System.out.println("Was soll beendet werden?");
@@ -435,7 +435,7 @@ class Game
     private void checkForEnemy(){
         if(currentRoom.hasEnemy()){
             System.out.println("Es befindet sich ein Gegner mit dir im Raum.");
-            System.out.println("Zur Verfügung stehende Befehle: attack, escape, feed");
+            System.out.println("Zur Verfügung stehende Commande: attack, escape, feed");
             isFighting = true;
         }
     }
