@@ -46,7 +46,10 @@ class Befehlswoerter
         // in den Befehlswörter gefunden.
         return isContainerCommand(eingabe);
     }
-
+    
+    /**
+     * Überprüft ob ein Befehl zum Bedienen von Containern genutzt wird.
+     */
     public boolean isContainerCommand(String eingabe)    
     {    
         for(int i = 0; i < CONTAINER_COMMANDS.length; i++)    

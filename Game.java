@@ -457,6 +457,9 @@ class Game
         return -1;
     }
 
+    /**
+     * Ist für das Ausführen des Programmes nach dem Exportieren wichtig.
+     */
     public static void main(String args[]){
         Game myGame = new Game();
         myGame.spielen();
