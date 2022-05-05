@@ -11,14 +11,16 @@ public class Item
     protected String description;
     protected int stat;
     protected int type;
+    protected int weight;
     /**
      * Constructor for objects of class Gegenstände
      */
-    public Item(String _name, String _description, int _stat)
+    public Item(String _name, String _description, int _stat, int _weight)
     {
         name = _name;
         description = _description;
         stat = _stat;
+        weight = _weight;
     }
     
     public String getName(){
@@ -37,9 +39,9 @@ public class Item
     {
         return type;
     }
-
-
     
-    
-    
+    public int getWeight()
+    {
+        return weight;
+    }
 }

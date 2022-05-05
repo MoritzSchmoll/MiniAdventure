@@ -10,10 +10,9 @@ public class Key extends Item
     /**
      * Konstruktor für Objekte der Klasse Mysterious
      */
-    public Key(String name, String beschreibung, int ability)
+    public Key(String name, String beschreibung, int ability, int weight)
     {
-        super(name, beschreibung, ability);
-        type = 2;
+        super(name, beschreibung, ability, weight);
     }
     
     public void useItem()

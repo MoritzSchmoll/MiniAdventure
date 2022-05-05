@@ -27,7 +27,7 @@ public class Player
     {
         inventory = new ArrayList<>();
         for( int i = 0 ; i < 5 ; i++ )
-            inventory.add(new Food("Keks", "leckerer Keks, welcher 10 Sättigungspunkte wieder herstellt", 10));
+            inventory.add(new Food("Keks", "leckerer Keks, welcher 10 Sättigungspunkte wieder herstellt", 10, 1));
     }
 
     /**

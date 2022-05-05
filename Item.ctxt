@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Item
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Gegenst\u00E4nde\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=_name\ _description\ _stat
-comment1.target=Item(java.lang.String,\ java.lang.String,\ int)
+comment1.params=_name\ _description\ _stat\ _weight
+comment1.target=Item(java.lang.String,\ java.lang.String,\ int,\ int)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Gegenst\u00E4nde\r\n
 comment2.params=
 comment2.target=java.lang.String\ getName()
@@ -12,4 +12,6 @@ comment4.params=
 comment4.target=int\ getStat()
 comment5.params=
 comment5.target=int\ getType()
-numComments=6
+comment6.params=
+comment6.target=int\ getWeight()
+numComments=7
