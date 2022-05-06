@@ -126,7 +126,7 @@ public class Player
             while (it.hasNext()){
                 Item x = it.next();
                 String itemName = x.getName();
-                if(name.equals(itemName) && x.getType() == 0){
+                if(name.equals(itemName) && x instanceof Food){
                     System.out.println("Du hast " + name + " gegessen");
                     System.out.println("Durch das essen wurden " + x.getStat() + " Sättigungspunkte wieder hergestellt.");
                     changeSaturation(x.getStat());
@@ -211,6 +211,23 @@ public class Player
         return hasWeapon;
     }
 
+    public boolean hasKeyOfType(String type)
+    {
+        Item item;
+        for(int i = 0; i < inventory.size(); i++)
+        {
+            item = inventory.get(i);
+            if(item instanceof Key)
+            {
+                if(((Key) item).getType().equals(type))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
     /**
      * Fügt denn übergebenen Gegenstand dem Spieler Inventar hinzu.
      */
@@ -235,13 +252,13 @@ public class Player
     public boolean pickUp(Item newItem, Room currentRoom, boolean isItemInContainer){
         if(newItem != null && updateWeight() + newItem.getWeight() < maxInventoryWeight)
         {
-            if(newItem.getType() != 1)
+            if(newItem instanceof Weapon)
             {
                 inventory.add(newItem);
                 System.out.println("Du hast " + newItem.getName() + " aufgehoben");
                 return true;
             }
-            else if(newItem.getType() == 1){
+            else if(!(newItem instanceof Weapon)){
                 if(hasWeapon == false)
                 {
                     inventory.add(newItem);
@@ -281,10 +298,11 @@ public class Player
             {
                 container.addItem(item);
                 it.remove();
-                if(item.getType() == 1)
+                if(item instanceof Weapon)
                 {
                     hasWeapon = false;
                 }
+                System.out.println(itemName + " wurde " + container.getName() + " hinzugefügt");
                 return true;
             }
         }
@@ -313,7 +331,7 @@ public class Player
         while(it.hasNext())
         {
             item = it.next();
-            if(item.getType() == 1)
+            if(item instanceof Weapon)
             {
                 return (Weapon) item;
             }

@@ -11,14 +11,21 @@ public class Container
     private ArrayList<Item> contents;
     private String name;
     private int sizeLimit;
+    private boolean isLocked;
     /**
      * Constructor for objects of class Container
      */
     public Container(String _name, int _sizeLimit)
     {
+        this(_name, _sizeLimit, false);
+    }
+    
+    public Container(String _name, int _sizeLimit, boolean _isLocked)
+    {
         name = _name;
         sizeLimit = _sizeLimit;
         contents = new ArrayList<>();
+        isLocked = _isLocked;
     }
     
     /**
@@ -26,6 +33,11 @@ public class Container
      */
     public String getName(){
         return name;
+    }
+    
+    public boolean isLocked()
+    {
+        return isLocked;    
     }
     
     /**
@@ -56,7 +68,6 @@ public class Container
         {
             contents.add(item);
         }
-        System.out.println(item.getName() + " wurde " + name + " hinzugefügt");
     }
     
     

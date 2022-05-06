@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Book
+comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Food.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
+comment1.params=name\ beschreibung\ weight
+comment1.target=Book(java.lang.String,\ java.lang.String,\ int)
+comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ Food\r\n
+numComments=2

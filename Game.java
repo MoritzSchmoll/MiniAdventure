@@ -42,7 +42,7 @@ class Game
      */
     private void raeumeAnlegen()
     {
-        Room garten, flur, wohnzimmer, schlafzimmer, küche, speisekammer, rutsche, gewächshaus, treppenhaus, waffenkammer, thronsaal, weinkeller;
+        Room garten, flur, wohnzimmer, schlafzimmer, küche, speisekammer, rutsche, gewaechshaus, treppenhaus, waffenkammer, thronsaal, weinkeller;
 
         // die Räume erzeugen
         garten = new Room("im Garten vor einem kleinen Haus");
@@ -52,7 +52,7 @@ class Game
         küche = new Room("in einer Küche mit einem Tisch, auf dem alte verkrustete Töpfe stehen");
         speisekammer = new Room("in einer kleinen Speisekammer die voller Schränke mit verstaubten Gläsern ist");
         rutsche = new Room("durch eine Rutsche mit einer dunklen Röhre gerutscht", true);
-        gewächshaus = new Room("im Gewächshaus mit vielen großen Pflanzen, welche schöne große Früchte tragen");
+        gewaechshaus = new Room("im Gewächshaus mit vielen großen Pflanzen, welche schöne große Früchte tragen");
         treppenhaus = new Room("im Treppenhaus, dessen Stufen schon sehr morsch und gefährlich aus sehen");
         waffenkammer = new Room("in einer Waffenkammer mit Waffenschränken, in welchen viele alte Waffen liegen, genauso wie alte Rüstungen");
         thronsaal = new Room("in einem impossanten Thronsaal, in dem es einen langen Reihe aus Statuen gibt, die zu einem riesigen Thron führt");
@@ -60,6 +60,7 @@ class Game
 
         // die Ausgänge initialisieren
         garten.setExit("north", flur);
+        garten.setExit("east", gewaechshaus);
         flur.setExit("east", küche);
         flur.setExit("west", wohnzimmer);
         flur.setExit("south", garten);
@@ -71,31 +72,50 @@ class Game
         küche.setExit("east", speisekammer);
         speisekammer.setExit("west", küche);
         speisekammer.setExit("south", treppenhaus);
-        gewächshaus.setExit("west", garten);
+        gewaechshaus.setExit("west", garten);
         treppenhaus.setExit("south", weinkeller);
         weinkeller.setExit("east", waffenkammer);
         waffenkammer.setExit("north", thronsaal);
         waffenkammer.setExit("west", weinkeller);
         rutsche.setExit("east", waffenkammer);
-
+        
         // Gegenstände verteilen
-        küche.addItem(new Weapon("Messer", "ein großes scharfes Küchenmesser", 10, 4));
+        küche.addItem(new Weapon("Messer", "ein großes scharfes Küchenmesser", 6, 4));
         küche.addItem(new Weapon("Keule", "eine große tödliche Keule", 10, 6));
         küche.addItem(new Food("Brot", "trotz das dieses Haus sehr herunter gekommern und verlassen scheint, sieht diese Brot sehr Frisch aus", 20, 2));
-        schlafzimmer.addItem(new Item("Schlüssel", "ein großer Schlüssel", 2, 1));
+        schlafzimmer.addItem(new Weapon("Stock", "ein dünner und spitzerStock", 2, 1));
         garten.addItem(new Food("Apfel", "ein schöner, glänzend roter Apfel", 15, 2));
-
+        gewaechshaus.addItem(new Food("Melone", "eine sehr große Melone", 10, 5));
+        gewaechshaus.addItem(new Food("Karotte", "eine kleine Karotte", 5, 1));
+        weinkeller.addItem(new Food("Dom Perignon", "ein Champagner", 5, 5));
+               
         // Container erschaffen
         schlafzimmer.addContainer("Kleiderschrank", 2);
-
+        waffenkammer.addContainer("Waffenschrank", 3, true);
+        garten.addContainer("Stein",1);
+        
+        // Gegenstände im Container erschaffen
+        schlafzimmer.getContainer().addItem(new Key("Schlüssel", "ein großer mysteriöser Schlüssel", 1, "Door"));
+        schlafzimmer.getContainer().addItem(new Book("altes Buch", "ein altes Buch in dem Text in einer hyroglyphenartigen Sprache steht", 5));
+        waffenkammer.getContainer().addItem(new Weapon("Revolver", "ein alter Revolver", 15, 5));
+        garten.getContainer().addItem(new Key("Schlüsselkarte", "eine moderne Schlüsselkarte", 2, "Locker"));
+        
         //Gegner erschaffen
         speisekammer.addEnemy("Rattenkönig", //name
-            "eine riesige Ratte, die so groß ist wie ein Hund", //description
-            new Weapon("Fleischhammer", "ein großer blutverschmierter Fleischhammer", 5, 5), //weapon
-            60, //agility
-            30, //health
-            "Keks", //food
-            new Food("Apfel", "ein goldener Apfel", 30, 2)); //drop
+                "eine riesige Ratte, die so groß ist wie ein Hund", //description
+                new Weapon("Fleischhammer", "ein großer blutverschmierter Fleischhammer", 5, 5), //weapon
+                60, //agility
+                30, //health
+                "Keks", //food
+                new Food("Apfel", "ein goldener Apfel", 30, 2)); //drop
+            
+        thronsaal.addEnemy("Skelletkönig",
+            	"Der Geist von König Artus in Form eines großen angsteinflössendem Skellets",
+        	new Weapon("Excalibur", "das legendäre Schwert von König Artus", 30, 15),
+        	90,
+        	500,
+        	"altes Buch",
+        	new Weapon("Excalibur", "das legendäre Schwert von König Artus", 30, 15)); //dro
 
         currentRoom = garten;  // das Spiel startet in Raum garten
     }
@@ -177,14 +197,20 @@ class Game
             }
             else if(command.hasSecondCommand() && command.gibZweitesWort().equals(currentRoom.getContainer().getName()))
             {
+                if(currentRoom.getContainer().isLocked() && !player.hasKeyOfType("Locker"))
+                {
+                    System.out.println("Dieser Container benötigt eine spezielle Schlüsselkarte.");
+                    return false;
+                }
+                
                 currentRoom.container.printContents();
-                System.out.println("Mögliche Commande: close, put, take");
+                System.out.println("Mögliche Befehle: close, put {item}, take {item}");
                 containerIsOpened = true;
                 return false;
             }
             else if(command.hasSecondCommand())
             {
-                System.out.println("Dieser Raum hat kein Behältnis mit " + command.gibZweitesWort());
+                System.out.println("Dieser Raum hat kein Behältnis mit dem Namen " + command.gibZweitesWort());
                 return false;
             }
         }
@@ -385,7 +411,7 @@ class Game
         if (nextRoom == null) {
             System.out.println("Dort ist keine Tür!");
         }
-        else if(nextRoom.checkIfLocked() && !player.hasKey())
+        else if(nextRoom.checkIfLocked() && !player.hasKeyOfType("Door"))
         {
             System.out.println("Diese Tür benötigt einen Schlüssel um geöffnet zu werden!");
         }

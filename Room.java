@@ -73,12 +73,23 @@ class Room
     
     /**
      * Fügt dem Raum einen Container mit Namen und Maximalgröße hinzu.
+     * Setzt den Verschlossenheitswert auf false
      */
     public void addContainer(String name, int sizeLimit)
     {
-        container = new Container(name, sizeLimit);
+        addContainer(name, sizeLimit, false);
     }
 
+       /**
+     * Fügt dem Raum einen Container mit Namen und Maximalgröße hinzu.
+     * Ermöglicht das Verschließen des Containers
+     */
+    
+    public void addContainer(String name, int sizeLimit, boolean isLocked)
+    {
+        container = new Container(name, sizeLimit, isLocked);
+    }
+    
     /**
      * Gibt zurück, ob der Raum einen Container besitzt.
      */

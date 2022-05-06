@@ -10,7 +10,6 @@ public class Item
     protected String name;
     protected String description;
     protected int stat;
-    protected int type;
     protected int weight;
     /**
      * Konstruktor für Objekte der Klasse Item
@@ -44,15 +43,7 @@ public class Item
     public int getStat(){
         return stat;
     }
-    
-    /**
-     * Gibt den Typen des Gegenstandes zurück.
-     */
-    public int getType()
-    {
-        return type;
-    }
-    
+       
     /**
      * Gibt das Gewicht des Gegenstandes zurück.
      */
