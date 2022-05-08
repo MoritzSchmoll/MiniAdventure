@@ -83,7 +83,7 @@ public class Player
     public void printStats(){
         System.out.println("Lebenspunkte: " + health);
         System.out.println("Sättigung: " + saturation);
-        System.out.println("Beweglichkeit: " + agility);
+        System.out.println("Beweglichkeit: " + (agility + updateWeight()));
         System.out.println("Gewicht: " + updateWeight() + " von " + maxInventoryWeight);
     }
 
@@ -246,6 +246,8 @@ public class Player
             if(!(newItem instanceof Weapon))
             {
                 inventory.add(newItem);
+                if(!isItemInContainer)
+                        currentRoom.removeItem(newItem);
                 System.out.println("Du hast " + newItem.getName() + " aufgehoben");
                 return true;
             }
@@ -254,9 +256,7 @@ public class Player
                 {
                     inventory.add(newItem);
                     if(!isItemInContainer)
-                    {
                         currentRoom.removeItem(newItem);
-                    }
                     hasWeapon = true;
                     System.out.println("Du hast " + newItem.getName() + " aufgehoben");
                     return true;
