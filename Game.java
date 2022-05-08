@@ -83,11 +83,14 @@ class Game
         küche.addItem(new Weapon("Messer", "ein großes scharfes Küchenmesser", 6, 4));
         küche.addItem(new Weapon("Keule", "eine große tödliche Keule", 10, 6));
         küche.addItem(new Food("Brot", "trotz das dieses Haus sehr herunter gekommern und verlassen scheint, sieht diese Brot sehr Frisch aus", 20, 2));
+        speisekammer.addItem(new Food("Schinkenkeule", "ein großer sehr Schmackhaft aus sehender Schinken",25,6));
+        treppenhaus.addItem(new Weapon("Besen", "ein Besen, der an einen Hexenbesen errinnert",3,2));
         schlafzimmer.addItem(new Weapon("Stock", "ein dünner und spitzerStock", 2, 1));
         garten.addItem(new Food("Apfel", "ein schöner, glänzend roter Apfel", 15, 2));
         gewaechshaus.addItem(new Food("Melone", "eine sehr große Melone", 10, 5));
         gewaechshaus.addItem(new Food("Karotte", "eine kleine Karotte", 5, 1));
-        weinkeller.addItem(new Food("Dom Perignon", "ein Champagner", 5, 5));
+        weinkeller.addItem(new Food("Moet", "eine große Flasche Champagner", 5, 5));
+        waffenkammer.addItem(new Weapon("Schwert", "ein Schwert mit einer großen Klinge", 15, 4));
                
         // Container erschaffen
         schlafzimmer.addContainer("Kleiderschrank", 2);
@@ -97,8 +100,9 @@ class Game
         // Gegenstände im Container erschaffen
         schlafzimmer.getContainer().addItem(new Key("Schlüssel", "ein großer mysteriöser Schlüssel", 1, "Door"));
         schlafzimmer.getContainer().addItem(new Book("altes Buch", "ein altes Buch in dem Text in einer hyroglyphenartigen Sprache steht", 5));
-        waffenkammer.getContainer().addItem(new Weapon("Revolver", "ein alter Revolver", 15, 5));
+        waffenkammer.getContainer().addItem(new Weapon("Revolver", "ein alter Revolver", 20, 5));
         garten.getContainer().addItem(new Key("Schlüsselkarte", "eine moderne Schlüsselkarte", 2, "Locker"));
+    
         
         //Gegner erschaffen
         speisekammer.addEnemy("Rattenkönig", //name
