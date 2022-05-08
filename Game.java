@@ -80,12 +80,14 @@ class Game
         rutsche.setExit("east", waffenkammer);
         
         // Gegenstände verteilen
+        wohnzimmer.addItem(new Food("eine Tüte Chips", "eine große Tüte Chips", 10,1));
+        flur.addItem(new Book("Fantasyroman", "ein dickes Buch mit dem Titel **Dieses Element musste aus Copyright rechtlichen Gründen entfernt werden**", 5 ));
         küche.addItem(new Weapon("Messer", "ein großes scharfes Küchenmesser", 6, 4));
         küche.addItem(new Weapon("Keule", "eine große tödliche Keule", 10, 6));
         küche.addItem(new Food("Brot", "trotz das dieses Haus sehr herunter gekommern und verlassen scheint, sieht diese Brot sehr Frisch aus", 20, 2));
         speisekammer.addItem(new Food("Schinkenkeule", "ein großer sehr Schmackhaft aus sehender Schinken",25,6));
         treppenhaus.addItem(new Weapon("Besen", "ein Besen, der an einen Hexenbesen errinnert",3,2));
-        schlafzimmer.addItem(new Weapon("Stock", "ein dünner und spitzerStock", 2, 1));
+        schlafzimmer.addItem(new Weapon("Flasche", "eine zerbrochene Bierflasche", 3, 2));
         garten.addItem(new Food("Apfel", "ein schöner, glänzend roter Apfel", 15, 2));
         gewaechshaus.addItem(new Food("Melone", "eine sehr große Melone", 10, 5));
         gewaechshaus.addItem(new Food("Karotte", "eine kleine Karotte", 5, 1));
@@ -99,7 +101,7 @@ class Game
         
         // Gegenstände im Container erschaffen
         schlafzimmer.getContainer().addItem(new Key("Schlüssel", "ein großer mysteriöser Schlüssel", 1, "Door"));
-        schlafzimmer.getContainer().addItem(new Book("altes Buch", "ein altes Buch in dem Text in einer hyroglyphenartigen Sprache steht", 5));
+        schlafzimmer.getContainer().addItem(new Book("altes Buch", "ein altes Buch in dem Text in einer hyroglyphenartigen Sprache steht", 4));
         waffenkammer.getContainer().addItem(new Weapon("Revolver", "ein alter Revolver", 20, 5));
         garten.getContainer().addItem(new Key("Schlüsselkarte", "eine moderne Schlüsselkarte", 2, "Locker"));
     
@@ -296,6 +298,7 @@ class Game
         
         if (commandWord.equals("stats")){
             player.printStats();
+            return false;
         }
         
         if (commandWord.equals("heal"))
@@ -304,6 +307,7 @@ class Game
             if(isFighting){
                 player.changeHealth(currentRoom.getEnemy().attack(player.getAgility()));
             }
+            return false;
         }
 
         if(isFighting){
