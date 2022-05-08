@@ -243,13 +243,13 @@ public class Player
     public boolean pickUp(Item newItem, Room currentRoom, boolean isItemInContainer){
         if(newItem != null && updateWeight() + newItem.getWeight() < maxInventoryWeight)
         {
-            if(newItem instanceof Weapon)
+            if(!(newItem instanceof Weapon))
             {
                 inventory.add(newItem);
                 System.out.println("Du hast " + newItem.getName() + " aufgehoben");
                 return true;
             }
-            else if(!(newItem instanceof Weapon)){
+            else if(newItem instanceof Weapon){
                 if(hasWeapon == false)
                 {
                     inventory.add(newItem);
