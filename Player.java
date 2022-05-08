@@ -2,10 +2,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 /**
- * Beschreiben Sie hier die Klasse player.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Moritz und Leonhard
  */
 public class Player
 {
@@ -32,22 +29,8 @@ public class Player
     }
 
     /**
-     * Untersucht ob der Spieler einen Schlüssel im Inventar hat.
-     */
-    public boolean hasKey()
-    {
-        for(int i = 0; i < inventory.size(); i++)
-        {
-            if(inventory.get(i) instanceof Key)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * Überprüft ob der Spieler ein Gegenstand mit dem Übergebenen Namen im Inventar hat.
+     * @author Moritz
      */
     public boolean hasItem(String itemName)
     {
@@ -63,6 +46,7 @@ public class Player
 
     /**
      * Entfernt ein Gegenstand mit dem übergebenen Namen.
+     * @author Moritz
      */
     public void removeItem(String name)
     {
@@ -79,6 +63,7 @@ public class Player
 
     /**
      * Zählt über die Konsole alle Gegenstände die im Spieler Inventar vorhanden sind auf.
+     * @author Leonhard
      */
     public void printInventory(){
         if(inventory.size() == 0){
@@ -104,6 +89,7 @@ public class Player
 
     /**
      * Sorgt dafür, dass der Spieler mit einer Wahrscheinlichkeit von 50% 10 Sättigungspunkte verliert.
+     * @author Leonhard
      */
     public void loseSaturation(){
         if(rand.nextInt(10) < 4){
@@ -116,6 +102,7 @@ public class Player
      * Mit dieser Methode kann der Spieler essen.
      * Wobei immer so viele Sättigungspunkte hergestellt werden wie das Essen als Wert über gibt.
      * Außerdem wird kontrolliert ob die Sättigung nicht schon bei 90 oder höher liegt. Wenn das der Fall ist kann nichts mehr gegessen werden.
+     * @author Leonhard und Moritz
      */
     public void eat(String name){
         if(saturation >= 90){
@@ -157,6 +144,7 @@ public class Player
 
     /**
      * Wenn der Spieler mehr als 10 Sättigungspunkte besitzt werden 10 Lebenspunkte unter Verbrauch von 10 Sättigungspunkten hergestellt.
+     * @author Leonhard
      */
     public void heal(){
         if(saturation > 10){
@@ -171,6 +159,7 @@ public class Player
 
     /**
      * Verändert die Lebenspunkte um den übergebenen Wert und informiert über diese Veränderung mit Text über die Konsole.
+     * @author Leonhard
      */
     public void changeHealth(int change){
         health += change;
@@ -212,18 +201,18 @@ public class Player
         return hasWeapon;
     }
 
+    /**
+     * @author Moritz
+     */    
     public boolean hasKeyOfType(String type)
     {
         Item item;
         for(int i = 0; i < inventory.size(); i++)
         {
             item = inventory.get(i);
-            if(item instanceof Key)
+            if(item instanceof Key && ((Key) item).getType().equals(type))
             {
-                if(((Key) item).getType().equals(type))
-                {
-                    return true;
-                }
+                return true;
             }
         }
         return false;
@@ -249,6 +238,7 @@ public class Player
      * Dies ist die eigentliche Methode zum hinzufügen von Gegenständen in der noch überprüft wird ob der Spieler schon eine Waffe hat und verbietet es eine aufzuheben, wenn er schon eine besizt.
      * Des Weiteren wird das Löschen des Gegenstandes an seinem jetzigen Standort in Auftrag gegeben.
      * Das Maximalgewicht darf ebenso nicht überschritten werden.
+     * @author Moritz und Leonhard
      */
     public boolean pickUp(Item newItem, Room currentRoom, boolean isItemInContainer){
         if(newItem != null && updateWeight() + newItem.getWeight() < maxInventoryWeight)
@@ -287,6 +277,7 @@ public class Player
 
     /**
      * Ermöglicht es dem Spieler Gegenstände in den Container zu legen.
+     * @author Moritz
      */
     public boolean putItemInContainer(Container container, String itemName)
     {
@@ -312,6 +303,7 @@ public class Player
 
     /**
      * Aktualisiert das Gewicht des Inventars des Spielers.
+     * @author Moritz
      */
     private int updateWeight()
     {
@@ -325,6 +317,7 @@ public class Player
     
     /**
      * Gibt die aktuelle Waffe des Spielers zurück.
+     * @author Leonhard
      */
     public Weapon returnWeapon(){
         Iterator<Item> it = inventory.iterator();

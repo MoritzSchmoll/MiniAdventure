@@ -72,6 +72,7 @@ class Room
     /**
      * Fügt dem Raum einen Container mit Namen und Maximalgröße hinzu.
      * Setzt den Verschlossenheitswert auf false
+     * @author Moritz
      */
     public void addContainer(String name, int sizeLimit)
     {
@@ -81,6 +82,7 @@ class Room
        /**
      * Fügt dem Raum einen Container mit Namen und Maximalgröße hinzu.
      * Ermöglicht das Verschließen des Containers
+     * @author Moritz
      */
     
     public void addContainer(String name, int sizeLimit, boolean isLocked)
@@ -113,6 +115,7 @@ class Room
 
     /**
      * Entfernt einen Gegenstand aus dem Inventar des Raumes.
+     * @author Moritz
      */
     public void removeItem(Item item)
     {
@@ -211,18 +214,18 @@ class Room
 
     /**
      *  Überprüft, ob sich ein Gegenstand mit dem gegebenen Namen im Raum befindet und gibt diesen in dem Fall zurück.
+     *  @author Moritz
      */
     public Item findItem(String name){
+        Item item;
         Iterator<Item> it = inventory.iterator();
-        boolean gefunden = false;
         while (it.hasNext()){
-            Item x = it.next();
-            String itemName = x.getName();
-            if(name.equals(itemName)){
-                return x;
+            item = it.next();
+            if(name.equals(item.getName())){
+                return item;
             }
         }
-        System.out.println("Es gibt keinen Item in diesem Raum der so heißt !");
+        System.out.println("Es gibt keinen Gegenstand in diesem Raum, der so heißt!");
         return null;
     }
 
@@ -237,6 +240,7 @@ class Room
     /**
      * Zuständig für den Versuch dem Kampf zu flüchten. Hierzu werden die Spielereigenschaften zur Wahrscheinlichkeitsüberprüfung hinzugezogen.
      * Ebenso wird überprüft, ob der gewählte Ausgang verfügbar ist.
+     * @author Leonhard
      */
     public int tryingToEscape(String direction){
         Random rand = new Random();

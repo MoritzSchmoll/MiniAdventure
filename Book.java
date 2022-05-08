@@ -1,9 +1,6 @@
 
 /**
- * Beschreiben Sie hier die Klasse Food.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Moritz und Leonhard
  */
 public class Book extends Item
 {

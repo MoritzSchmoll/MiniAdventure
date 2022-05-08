@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Enemy
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Enemy\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Enemy\ here.\r\n\r\n\ @author\ Leonhard\r\n
 comment1.params=_name\ _description\ _weapon\ _agility\ _health\ _specialFood\ _drop\ _room
 comment1.target=Enemy(java.lang.String,\ java.lang.String,\ Weapon,\ int,\ int,\ java.lang.String,\ Item,\ Room)
 comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ Enemy\r\n\ Gibt\ dem\ Gegner\ seine\ Startwerte.\r\n
