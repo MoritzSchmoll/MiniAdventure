@@ -310,7 +310,7 @@ public class Player
         weight = 0;
         for(int i = 0; i < inventory.size(); i++)
         {
-            weight += inventory.get(i).getWeight();
+            weight -= inventory.get(i).getWeight();
         }
         return weight;
     }
