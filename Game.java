@@ -110,12 +110,12 @@ class Game
                 new Food("Apfel", "ein goldener Apfel", 30, 2)); //drop
             
         thronsaal.addEnemy("Skelletkönig",
-            	"Der Geist von König Artus in Form eines großen angsteinflössendem Skellets",
-        	new Weapon("Excalibur", "das legendäre Schwert von König Artus", 30, 15),
-        	90,
-        	500,
-        	"altes Buch",
-        	new Weapon("Excalibur", "das legendäre Schwert von König Artus", 30, 15)); //dro
+                "Der Geist von König Artus in Form eines großen angsteinflössendem Skellets",
+            new Weapon("Excalibur", "das legendäre Schwert von König Artus", 30, 15),
+            90,
+            500,
+            "altes Buch",
+            new Weapon("Excalibur", "das legendäre Schwert von König Artus", 30, 15)); //dro
 
         currentRoom = garten;  // das Spiel startet in Raum garten
     }
@@ -284,6 +284,18 @@ class Game
             System.out.println("Du musst " + currentRoom.container.getName() + " erst schließen bevor du etwas anderes tun kannst.");
             return false;
         }
+        
+        if (commandWord.equals("stats")){
+            player.printStats();
+        }
+        
+        if (commandWord.equals("heal"))
+        {
+            player.heal();
+            if(isFighting){
+                player.changeHealth(currentRoom.enemyAttack(player.getAgility()));
+            }
+        }
 
         if(isFighting){
             if(!currentRoom.hasEnemy())
@@ -321,9 +333,7 @@ class Game
         else if (commandWord.equals("inventory")){
             player.printInventory();
         }
-        else if (commandWord.equals("stats")){
-            player.printStats();
-        }
+        
         else if (commandWord.equals("eat")){
             if(command.hasSecondCommand()){
                 player.eat(command.gibZweitesWort());
@@ -344,10 +354,7 @@ class Game
         {
             System.out.println("Du bist nicht im Kampf.");
         }
-        else if (commandWord.equals("heal"))
-        {
-            player.heal();  
-        }
+        
         // ansonsten: Command nicht erkannt.
         return moechteBeenden;
     }
@@ -461,7 +468,7 @@ class Game
     private void checkForEnemy(){
         if(currentRoom.hasEnemy()){
             System.out.println("Es befindet sich ein Gegner mit dir im Raum.");
-            System.out.println("Zur Verfügung stehende Commande: attack, escape, feed");
+            System.out.println("Zur Verfügung stehende Commande: attack, escape, feed, enemy, stats, heal");
             isFighting = true;
         }
     }
