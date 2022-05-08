@@ -80,7 +80,7 @@ class Game
         rutsche.setExit("east", waffenkammer);
         
         // Gegenstände verteilen
-        wohnzimmer.addItem(new Food("eine Tüte Chips", "eine große Tüte Chips", 10,1));
+        wohnzimmer.addItem(new Food("Chips", "eine große Tüte Chips", 10,1));
         flur.addItem(new Book("Fantasyroman", "ein dickes Buch mit dem Titel **Dieses Element musste aus Copyright rechtlichen Gründen entfernt werden**", 5 ));
         küche.addItem(new Weapon("Messer", "ein großes scharfes Küchenmesser", 6, 4));
         küche.addItem(new Weapon("Keule", "eine große tödliche Keule", 10, 6));
