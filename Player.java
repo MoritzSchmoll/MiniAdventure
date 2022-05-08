@@ -83,7 +83,7 @@ public class Player
     public void printStats(){
         System.out.println("Lebenspunkte: " + health);
         System.out.println("Sättigung: " + saturation);
-        System.out.println("Beweglichkeit: " + agility);
+        System.out.println("Beweglichkeit: " + (agility + updateWeight()));
         System.out.println("Gewicht: " + updateWeight() + " von " + maxInventoryWeight);
     }
 
