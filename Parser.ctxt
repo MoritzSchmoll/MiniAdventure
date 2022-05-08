@@ -11,6 +11,6 @@ comment3.params=
 comment3.target=CommandWords\ getCommandWords()
 comment3.text=\r\n\ Gibt\ alle\ g\u00FCltigen\ Commande\ wieder.\r\n
 comment4.params=
-comment4.target=void\ zeigeCommande()
+comment4.target=void\ printCommands()
 comment4.text=\r\n\ Gib\ eine\ Liste\ der\ bekannten\ Commandsw\u00F6rter\ aus.\r\n
 numComments=5

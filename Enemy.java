@@ -95,7 +95,7 @@ public class Enemy
      * Beim Versuch den Gegner zu füttern, wird überprüft, ob dem Gegner im Raum das gegebene Essen schmeckt, und dieser wird in dem Fall besiegt und entfernt und lässt einen Gegenstand fallen.
      * @author Moritz
      */
-    public boolean feed(String food)
+    public boolean giveItem(String food)
     {
         if(getSpecialFood().equals(food))
         {

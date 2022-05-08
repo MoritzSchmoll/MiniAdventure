@@ -78,7 +78,7 @@ class Parser
     /**
      * Gib eine Liste der bekannten Commandswörter aus.
      */
-    public void zeigeCommande()
+    public void printCommands()
     {
         commandWords.printAll();
     }

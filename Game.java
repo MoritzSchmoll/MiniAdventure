@@ -14,7 +14,6 @@ import java.util.Random;
  *  Parser an und startet das Spiel. Sie wertet auch die Commande
  *  aus, die der Parser liefert und sorgt für ihre Ausführung.
  * 
- * @author  auf Grundlage von Michael Kölling und David J. Barnes
  * 
  */
 
@@ -237,10 +236,10 @@ class Game
             System.out.println("Es ist kein Gegner mit dir im Raum den du angreifen könntest.");
         }
 
-        if (commandWord.equals("feed") && isFighting){
+        if (commandWord.equals("give") && isFighting){
             if(command.hasSecondCommand() && player.hasItem(command.gibZweitesWort()))
             {
-                if(!currentRoom.getEnemy().feed(command.gibZweitesWort())) //aktueller Raum muss einen Gegner haben, da der Spieler bereits im Kampf ist
+                if(!currentRoom.getEnemy().giveItem(command.gibZweitesWort())) //aktueller Raum muss einen Gegner haben, da der Spieler bereits im Kampf ist
                 {
                     System.out.println("Dem Gegner hat diese Nahrung nicht geschmeckt.");
                 }
@@ -261,7 +260,6 @@ class Game
             return false;
         }
 
-        
         if (commandWord.equals("escape") && isFighting){
             if(command.hasSecondCommand()){
                 int result = currentRoom.tryingToEscape(command.gibZweitesWort());
@@ -296,12 +294,12 @@ class Game
             return false;
         }
         
-        if (commandWord.equals("stats")){
+        if(commandWord.equals("stats")){
             player.printStats();
             return false;
         }
         
-        if (commandWord.equals("heal"))
+        if(commandWord.equals("heal"))
         {
             player.heal();
             if(isFighting){
@@ -363,7 +361,7 @@ class Game
                 System.out.println("Was soll auf gehoben werden?");
             }
         }
-        else if (commandWord.equals("feed"))
+        else if (commandWord.equals("give"))
         {
             System.out.println("Du bist nicht im Kampf.");
         }
@@ -407,7 +405,7 @@ class Game
         System.out.println("Sie wissen nicht was zu tun ist, Sie sind allein?");
         System.out.println();
         System.out.println("Ihnen stehen folgende Commande zur Verfügung:");
-        parser.zeigeCommande();
+        parser.printCommands();
     }
 
     /**
@@ -467,7 +465,7 @@ class Game
     private void checkForEnemy(){
         if(currentRoom.hasEnemy()){
             System.out.println("Es befindet sich ein Gegner mit dir im Raum.");
-            System.out.println("Zur Verfügung stehende Commande: attack, escape, feed, enemy, stats, heal");
+            System.out.println("Zur Verfügung stehende Commande: attack, escape, give, enemy, stats, heal");
             isFighting = true;
         }
     }

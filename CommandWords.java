@@ -16,12 +16,15 @@ class CommandWords
     // ein konstantes Array mit den gültigen Befehlswörtern
     
     private static final String[] VALID_COMMANDS = {
-        "go", "quit", "exit", "stop", "help", "look", "inventory", "stats", "eat", "pickup", "container", "open", "attack", "escape", "enemy", "feed", "heal"
+        "go", "quit", "exit", "stop", "help", "look", "inventory", "stats", "eat", "pickup", "open", "attack", "escape", "enemy", "give", "heal"
     };
     private static final String[] CONTAINER_COMMANDS = {
         "put", "take", "close"
     };
-
+    private static final String[] ALL_COMMANDS = {
+        "go", "quit", "exit", "stop", "help", "look", "look {item}", "inventory", "stats", "eat {item}", "pickup {item}", "open {container}", 
+        "close", "put {item}", "take {item}", "attack", "escape {item}", "enemy", "give {item}", "heal"
+    };
     /**
      * Konstruktor - initialisiere die Befehlswörter.
      */
@@ -65,8 +68,9 @@ class CommandWords
      */
     public void printAll() 
     {
-        for(String befehl : VALID_COMMANDS) {
-            System.out.print(befehl + "  ");
+        for(String befehl : ALL_COMMANDS) 
+        {
+            System.out.print(befehl + ",  ");
         }
         System.out.println();
     }
