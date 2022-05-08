@@ -220,12 +220,13 @@ class Game
         }
 
         if(commandWord.equals("attack") && isFighting){
-            if(currentRoom.damageEnemy(attack(player.returnWeapon())) == false)
+            if(!currentRoom.getEnemy().damageEnemy(attack(player.returnWeapon())))
             {
-                player.changeHealth(currentRoom.enemyAttack(player.getAgility()));
+                player.changeHealth(currentRoom.getEnemy().attack(player.getAgility()));
             }
             else
             {
+                currentRoom.removeEnemy();
                 isFighting = false;
             }
             return false;
@@ -237,9 +238,13 @@ class Game
         if (commandWord.equals("feed") && isFighting){
             if(command.hasSecondCommand() && player.hasItem(command.gibZweitesWort()))
             {
-                if(!currentRoom.feedEnemy(command.gibZweitesWort())) //aktueller Raum muss einen Gegner haben, da der Spieler bereits im Kampf ist
+                if(!currentRoom.getEnemy().feed(command.gibZweitesWort())) //aktueller Raum muss einen Gegner haben, da der Spieler bereits im Kampf ist
                 {
                     System.out.println("Dem Gegner hat diese Nahrung nicht geschmeckt.");
+                }
+                else
+                {
+                    currentRoom.removeEnemy();
                 }
                 player.removeItem(command.gibZweitesWort());
             }
@@ -266,7 +271,7 @@ class Game
                 }
                 else if(result == 1){
                     System.out.println("Du hast es nicht geschafft weg zu laufen, der Gegner hat dich daran gehindert.");
-                    player.changeHealth(currentRoom.enemyAttack(player.getAgility()));
+                    player.changeHealth(currentRoom.getEnemy().attack(player.getAgility()));
                 }
                 else if(result == 2){
                     System.out.println("Auf dieser Seite des Raumes gibt es keine Tür.");
@@ -297,7 +302,7 @@ class Game
         {
             player.heal();
             if(isFighting){
-                player.changeHealth(currentRoom.enemyAttack(player.getAgility()));
+                player.changeHealth(currentRoom.getEnemy().attack(player.getAgility()));
             }
         }
 

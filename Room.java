@@ -273,4 +273,9 @@ class Room
             return null;
         return enemy;
     }
+    
+    public void removeEnemy()
+    {
+        enemy = null;
+    }
 }
