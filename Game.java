@@ -113,7 +113,7 @@ class Game
                 60, //agility
                 30, //health
                 "Keks", //food
-                new Food("Apfel", "ein goldener Apfel", 30, 2)); //drop
+                new Food("Goldkeks", "ein goldener Apfel", 30, 2)); //drop
             
         thronsaal.addEnemy("Skelletkönig",
                 "Der Geist von König Artus in Form eines großen angsteinflössendem Skellets",
