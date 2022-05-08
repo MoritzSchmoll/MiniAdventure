@@ -48,4 +48,15 @@ public class Item
     {
         return weight;
     }
+    
+    public void printAllStats()
+    {
+        System.out.println(name + ":");
+        System.out.println(description);
+        System.out.println("Gewicht: " + weight);
+        if(this instanceof Weapon)
+            System.out.println("Schaden: " + stat);
+        else if(this instanceof Food)
+            System.out.println("Nahrungswert: " + stat);
+    }
 }

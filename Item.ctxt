@@ -16,4 +16,6 @@ comment4.text=\r\n\ Gibt\ einen\ bestimmten\ Wert\ zur\u00FCck,\ der\ nach\ Art\
 comment5.params=
 comment5.target=int\ getWeight()
 comment5.text=\r\n\ Gibt\ das\ Gewicht\ des\ Gegenstandes\ zur\u00FCck.\r\n
-numComments=6
+comment6.params=
+comment6.target=void\ printAllStats()
+numComments=7

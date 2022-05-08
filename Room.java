@@ -165,7 +165,8 @@ class Room
     /**
      * Druckt alle Gegenstände, die sich im Raum befinden.
      */
-    public void printAlleGegenstaende(){
+    public void printAllItemsInRoom()
+    {
         if(!inventory.isEmpty())
         {
             System.out.println("Du hast die folgenden Gegenstände im Raum gefunden");
@@ -186,13 +187,15 @@ class Room
     /**
      * Gibt die Beschreibung eines Gegenstandes mit dem gegebenen Namen zurück, wenn es den Gegenstand gibt.
      */
-    public String getItemDescription(String name){
+    public void printItemDescription(String name)
+    {
         for (Item item : inventory){
             if(name.equals(item.getName())){
-                return item.getDescription();
+                item.printAllStats();
+                return;
             }
         }
-        return ("Solch einen Item gibt es nicht !");
+        System.out.println("Solch einen Item gibt es nicht!");
     }
 
     /**
