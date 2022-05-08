@@ -83,7 +83,7 @@ public class Player
     public void printStats(){
         System.out.println("Lebenspunkte: " + health);
         System.out.println("Sättigung: " + saturation);
-        System.out.println("Beweglichkeit: " + (agility + updateWeight()));
+        System.out.println("Beweglichkeit: " + (agility - updateWeight()));
         System.out.println("Gewicht: " + updateWeight() + " von " + maxInventoryWeight);
     }
 
@@ -190,7 +190,7 @@ public class Player
      * Gibt die aktuelle Anzahl an Beweglichkeitspunkten unter Berücksichtigung des Gewichts wieder.
      */
     public int getAgility(){
-        return agility+updateWeight();
+        return agility - updateWeight();
     }
 
     /**
@@ -310,7 +310,7 @@ public class Player
         weight = 0;
         for(int i = 0; i < inventory.size(); i++)
         {
-            weight -= inventory.get(i).getWeight();
+            weight += inventory.get(i).getWeight();
         }
         return weight;
     }
