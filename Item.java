@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 /**
- * Write a description of class Gegenstände here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Moritz und Leonhard
  */
 public class Item
 {

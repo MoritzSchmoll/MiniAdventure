@@ -1,9 +1,5 @@
-
 /**
- * Beschreiben Sie hier die Klasse Mysterious.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Moritz und Leonhard
  */
 public class Key extends Item
 {

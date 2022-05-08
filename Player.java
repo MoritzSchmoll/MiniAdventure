@@ -99,6 +99,7 @@ public class Player
         System.out.println("Lebenspunkte: " + health);
         System.out.println("Sättigung: " + saturation);
         System.out.println("Beweglichkeit: " + agility);
+        System.out.println("Gewicht: " + updateWeight() + " von " + maxInventoryWeight);
     }
 
     /**
@@ -277,9 +278,9 @@ public class Player
                 }
             }
         }
-        else
+        else if (newItem != null)
         {
-            System.out.println("Du bist dafür zu schwer!");
+            System.out.println("Du kannst nichts weiteres tragen. Leg einen anderen Gegenstand in einem Behälter ab, um einen weiteren aufzuheben.");
         }
         return false;
     }

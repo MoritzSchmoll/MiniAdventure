@@ -16,7 +16,6 @@ import java.util.Random;
 
 class Room 
 {
-    private Random rand;
     private String description;
     private ArrayList<Item> inventory;
     private ArrayList<RoomExit> exits;
@@ -38,7 +37,6 @@ class Room
      */
     public Room(String _description, boolean _isLocked) 
     {
-        rand = new Random();
         description = _description;
         exits = new ArrayList<>();
         inventory = new ArrayList<>();
@@ -110,7 +108,7 @@ class Room
      * Fügt dem Raum einen Gegner hinzu.
      */
     public void addEnemy(String name, String description, Weapon weapon, int agility, int health, String specialFood, Item drop){
-        enemy = new Enemy(name, description, weapon, agility, health, specialFood, drop);
+        enemy = new Enemy(name, description, weapon, agility, health, specialFood, drop, this);
     }
 
     /**
@@ -241,6 +239,7 @@ class Room
      * Ebenso wird überprüft, ob der gewählte Ausgang verfügbar ist.
      */
     public int tryingToEscape(String direction){
+        Random rand = new Random();
         boolean exitAvailable = false;
         for(RoomExit exit : exits){
             if(exit.getDirection().equals(direction)){
@@ -256,7 +255,6 @@ class Room
         }
         return 2;
     }
-
     
     /**
      * Druckt die Beschreibung des Gegners im Raum
@@ -268,53 +266,11 @@ class Room
     }
 
     /**
-     * Fügt dem Gegner die gegeben Anzahl an schaden hinzu und erkennt im Falle von einer Lebensanzahl von unter 0 den Sieg des Spielers.
-     */
-    public boolean damageEnemy(int damage){
-        if(damage != -1){
-            enemy.changeHealth(-damage);
-            System.out.println("Du hast dem Gegner " + damage + " Schaden zugefügt");
-            System.out.println("Damit hat der Gegner noch " + enemy.getHealth() + " Lebenspunkte");
-        }
-        if(enemy.getHealth() <= 0){
-            System.out.println("Du hast den Gegner im Raum besiegt");
-            enemy = null;
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * Gibt die Referenz zum Gegner im Raum zurück
      */
     public Enemy getEnemy(){
         if(enemy == null)
             return null;
         return enemy;
-    }
-
-    /**
-     * Beim Versuch den Gegner zu füttern, wird überprüft, ob dem Gegner im Raum das gegebene Essen schmeckt, und dieser wird in dem Fall besiegt und entfernt und lässt einen Gegenstand fallen.
-     */
-    public boolean feedEnemy(String food)
-    {
-        if(enemy != null && enemy.getSpecialFood().equals(food))
-        {
-            String drop = enemy.getDrop().getName();
-            String enemyName = enemy.getName();
-            System.out.println("Du hast " + enemyName + " im Raum zufriedengestellt. Er hat als Dank einen " + drop + " auf den Boden gelegt.");
-            addItem(enemy.getDrop());
-            enemy = null;
-            return true;
-        }
-        return false;
-    }
-    
-    public int enemyAttack(int playerAgility){
-        if(rand.nextInt(101) > playerAgility){
-            return -enemy.getWeapon().getStat();
-        }
-        System.out.println("Der Gegner hat dich mit seiner Attacke verfehlt");
-        return 0;
     }
 }

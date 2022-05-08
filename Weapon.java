@@ -1,13 +1,8 @@
-import java.util.Random;
 /**
- * Beschreiben Sie hier die Klasse Weapons.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Moritz und Leonhard
  */
 public class Weapon extends Item
 {
-    private Random rand;
     /**
      * Konstruktor für Objekte der Klasse Weapon
      */

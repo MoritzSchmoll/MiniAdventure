@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Item
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Gegenst\u00E4nde\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ @author\ Moritz\ und\ Leonhard\r\n
 comment1.params=_name\ _description\ _stat\ _weight
 comment1.target=Item(java.lang.String,\ java.lang.String,\ int,\ int)
 comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ Item\r\n\ Hier\ werden\ den\ Gegenst\u00E4nden\ ihre\ Daten\ \u00FCbergeben.\r\n
