@@ -337,10 +337,10 @@ class Game
         }
         else if (commandWord.equals("look")){
             if(command.hasSecondCommand()){
-                lookForItem(command.gibZweitesWort()); 
+                currentRoom.printItemDescription(command.gibZweitesWort()); 
             }
             else{
-                lookForItemsInRoom();  
+                currentRoom.printAllItemsInRoom();
             }
         }
         else if (commandWord.equals("inventory")){
@@ -458,20 +458,6 @@ class Game
         else {
             return true;  // Das Spiel soll beendet werden.
         }
-    }
-
-    /**
-     * Drucke alle Gegenstände und Container, die sich im Raum befinden.
-     */
-    private void lookForItemsInRoom (){
-        currentRoom.printAlleGegenstaende();
-    }
-
-    /**
-     * Gibt die Beschreibung eines bestimmten Gegenstandes im Raum aus
-     */
-    private void lookForItem(String name){
-        System.out.println(currentRoom.getItemDescription(name)); 
     }
 
     /**
