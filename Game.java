@@ -251,11 +251,11 @@ class Game
             }
             else if(command.hasSecondCommand())
             {
-                System.out.println("Dieses Essen liegt nicht in ihrem Inventar.");
+                System.out.println("Dieser Gegenstand liegt nicht in ihrem Inventar.");
             }
             else
             {
-                System.out.println("Geben Sie eine Nahrung zum Füttern an.");
+                System.out.println("Geben Sie einen Gegenstand zum übergeben an.");
             }
             return false;
         }
@@ -465,7 +465,7 @@ class Game
     private void checkForEnemy(){
         if(currentRoom.hasEnemy()){
             System.out.println("Es befindet sich ein Gegner mit dir im Raum.");
-            System.out.println("Zur Verfügung stehende Commande: attack, escape, give, enemy, stats, heal");
+            System.out.println("Zur Verfügung stehende Befehle: attack, escape {direction}, give {item}, enemy, stats, heal");
             isFighting = true;
         }
     }

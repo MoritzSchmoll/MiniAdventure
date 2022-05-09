@@ -1,15 +1,4 @@
-/**
- * Diese Klasse ist Teil der Anwendung "MiniAdventure".
- * "MiniAdventure" ist ein sehr einfaches textbasiertes 
- * Adventure-Game.
- * 
- * Diese Klasse hält eine Aufzählung aller Befehlswörter, die dem
- * Spiel bekannt sind. Mit ihrer Hilfe werden eingetippte Befehle
- * erkannt.
- *
- * @author  Michael Kölling und David J. Barnes
- * @version 2016.02.29
- */
+import java.util.Arrays;
 
 class CommandWords
 {
@@ -25,12 +14,14 @@ class CommandWords
         "go", "quit", "exit", "stop", "help", "look", "look {item}", "inventory", "stats", "eat {item}", "pickup {item}", "open {container}", 
         "close", "put {item}", "take {item}", "attack", "escape {item}", "enemy", "give {item}", "heal"
     };
-    /**
-     * Konstruktor - initialisiere die Befehlswörter.
-     */
+    
+    private static final String[] VALID_DIRECTIONS = {
+        "north", "east", "south", "west"
+    };
+    
     public CommandWords()
     {
-        // nichts zu tun momentan...
+        
     }
 
     /**
@@ -39,28 +30,22 @@ class CommandWords
      * @return true  wenn die gegebene Zeichenkette ein gültiger
      *               Befehl ist, false sonst
      */
-    public boolean isCommand(String eingabe)
+    public boolean isCommand(String input)
     {
-         for(int i = 0; i < VALID_COMMANDS.length; i++) {    
-            if(VALID_COMMANDS[i].equals(eingabe)) 
-                return true;
-        }
-        // Wenn wir hierher gelangen, wurde die Eingabe nicht
-        // in den Befehlswörter gefunden.
-        return isContainerCommand(eingabe);
+        return Arrays.asList(VALID_COMMANDS).contains(input);
     }
     
     /**
      * Überprüft ob ein Befehl zum Bedienen von Containern genutzt wird.
      */
-    public boolean isContainerCommand(String eingabe)    
+    public boolean isContainerCommand(String input)    
     {    
-        for(int i = 0; i < CONTAINER_COMMANDS.length; i++)    
-        {    
-            if(CONTAINER_COMMANDS[i].equals(eingabe))     
-                return true;    
-        }    
-        return false;    
+        return Arrays.asList(CONTAINER_COMMANDS).contains(input);
+    }
+    
+    public boolean isDirection(String input)
+    {
+        return Arrays.asList(VALID_DIRECTIONS).contains(input);
     }
     
     /**

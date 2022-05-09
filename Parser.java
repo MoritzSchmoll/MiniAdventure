@@ -1,24 +1,5 @@
 import java.util.Scanner;
 
-/**
- * Diese Klasse ist Teil der Anwendung "MiniAdventure".
- * "MiniAdventure" ist ein sehr einfaches textbasiertes 
- * Adventure-Game.
- *
- * Dieser Parser liest Benutzereingaben und wandelt sie in
- * Commande für das Adventure-Game um. Bei jedem Aufruf
- * liest er eine Zeile von der Konsole und versucht, diese als
- * einen Command aus bis zu zwei Wörtern zu interpretieren. Er
- * liefert den Command als ein Objekt der Klasse Command zurück.
- * 
- * Der Parser verfügt über einen Satz an bekannten Commanden. Er
- * vergleicht die Eingabe mit diesen Commanden. Wenn die Eingabe
- * keinen bekannten Command enthält, dann liefert der Parser ein als 
- * unbekannter Command gekennzeichnetes Objekt zurück.
- * 
- * @author  Michael Kölling und David J. Barnes
- * @version 2016.02.29
- */
 class Parser 
 {
     private CommandWords commandWords;  // hält die gültigen Commandswörter
@@ -49,10 +30,26 @@ class Parser
         // Finde bis zu zwei Wörter in der Zeile
         Scanner zerleger = new Scanner(eingabezeile);
         if(zerleger.hasNext()) {
-            wort1 = zerleger.next();     // erstes Wort lesen: Buchstaben bis zum nächsten Leerzeichen/Return
+            wort1 = zerleger.next().toLowerCase(); // erstes Wort lesen: Buchstaben bis zum nächsten Leerzeichen/Return und in Kleinschrift umwandeln
             if (zerleger.hasNext()) {
-                wort2 = zerleger.next();    // zweites Wort lesen: Buchstaben bis zum nächsten Leerzeichen/Return
-                // Hinweis: Wir ignorieren den Rest der Eingabezeile.
+                wort2 = zerleger.next().toLowerCase(); // zweites Wort lesen: Buchstaben bis zum nächsten Leerzeichen/Return und in Kleinschrift umwandeln
+                if(!commandWords.isDirection(wort2)) //überprüfen, ob es sich um eine Richtung handelt, da diese kleingeschrieben werden
+                {
+                    char[] charArray = wort2.toCharArray(); //String wird in einen Character-Array umgewandelt, um einzelne Buchstaben betrachten zu können
+                    wort2 = ""; //String wird geleert, um ihn einzeln wieder zusammensetzen zu können
+                    for(int i = 0; i < charArray.length; i++) //geht durch den Array von Buchstaben des Strings und passt an, ob sie groß- oder kleingeschrieben werden
+                    {
+                        if(i == 0)
+                        {
+                            charArray[i] = Character.toUpperCase(charArray[i]); //der erste Buchstabe wird großgeschrieben
+                        }
+                        else
+                        {
+                            charArray[i] = Character.toLowerCase(charArray[i]); //macht alle weiteren Buchstaben klein
+                        }
+                        wort2 += charArray[i]; //fügt den einzelnen Buchstaben zurück zum String hinzu
+                    }
+                }
             }
         }
         

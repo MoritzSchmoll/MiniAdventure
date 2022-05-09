@@ -1,6 +1,5 @@
 #BlueJ class context
 comment0.target=Parser
-comment0.text=\r\n\ Diese\ Klasse\ ist\ Teil\ der\ Anwendung\ "MiniAdventure".\r\n\ "MiniAdventure"\ ist\ ein\ sehr\ einfaches\ textbasiertes\ \r\n\ Adventure-Game.\r\n\r\n\ Dieser\ Parser\ liest\ Benutzereingaben\ und\ wandelt\ sie\ in\r\n\ Commande\ f\u00FCr\ das\ Adventure-Game\ um.\ Bei\ jedem\ Aufruf\r\n\ liest\ er\ eine\ Zeile\ von\ der\ Konsole\ und\ versucht,\ diese\ als\r\n\ einen\ Command\ aus\ bis\ zu\ zwei\ W\u00F6rtern\ zu\ interpretieren.\ Er\r\n\ liefert\ den\ Command\ als\ ein\ Objekt\ der\ Klasse\ Command\ zur\u00FCck.\r\n\ \r\n\ Der\ Parser\ verf\u00FCgt\ \u00FCber\ einen\ Satz\ an\ bekannten\ Commanden.\ Er\r\n\ vergleicht\ die\ Eingabe\ mit\ diesen\ Commanden.\ Wenn\ die\ Eingabe\r\n\ keinen\ bekannten\ Command\ enth\u00E4lt,\ dann\ liefert\ der\ Parser\ ein\ als\ \r\n\ unbekannter\ Command\ gekennzeichnetes\ Objekt\ zur\u00FCck.\r\n\ \r\n\ @author\ \ Michael\ K\u00F6lling\ und\ David\ J.\ Barnes\r\n\ @version\ 2016.02.29\r\n
 comment1.params=
 comment1.target=Parser()
 comment1.text=\r\n\ Erzeuge\ einen\ Parser,\ der\ Commande\ von\ der\ Konsole\ einliest.\r\n
