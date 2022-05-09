@@ -404,7 +404,7 @@ class Game
     {
         System.out.println("Sie wissen nicht was zu tun ist, Sie sind allein?");
         System.out.println();
-        System.out.println("Ihnen stehen folgende Commande zur Verfügung:");
+        System.out.println("Ihnen stehen folgende Commands zur Verfügung:");
         parser.printCommands();
     }
 
