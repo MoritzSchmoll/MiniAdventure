@@ -101,7 +101,7 @@ public class Enemy
         {
             String dropName = drop.getName();
             String enemyName = getName();
-            System.out.println("Du hast " + enemyName + " im Raum zufriedengestellt. Er hat als Dank einen " + dropName + " auf den Boden gelegt.");
+            System.out.println("Du hast " + enemyName + " im Raum zufriedengestellt. Er hat als Dank " + dropName + " auf den Boden gelegt.");
             room.addItem(drop);
             return true;
         }

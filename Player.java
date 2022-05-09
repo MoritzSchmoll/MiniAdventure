@@ -241,6 +241,13 @@ public class Player
      * @author Moritz und Leonhard
      */
     public boolean pickUp(Item newItem, Room currentRoom, boolean isItemInContainer){
+        if(newItem.getName().equals("Excalibur")){
+            System.out.print("");
+            System.out.println("Du hast das legendäre Schwert Excalibur aufgehoben und somit das Ziel des Spiels erreicht.");
+            System.out.println("");
+            System.out.println("Herzlichen Glückwunsch");
+            System.exit(0);
+        }
         if(newItem != null && updateWeight() + newItem.getWeight() < maxInventoryWeight)
         {
             if(!(newItem instanceof Weapon))

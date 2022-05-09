@@ -100,7 +100,7 @@ class Game
         
         // Gegenstände im Container erschaffen
         schlafzimmer.getContainer().addItem(new Key("Schlüssel", "ein großer mysteriöser Schlüssel", 1, "Door"));
-        schlafzimmer.getContainer().addItem(new Book("altes Buch", "ein altes Buch in dem Text in einer hyroglyphenartigen Sprache steht", 4));
+        schlafzimmer.getContainer().addItem(new Book("Schriftrolle", "eine alte Schriftrolle in dem Text in einer hyroglyphenartigen Schrift steht", 4));
         waffenkammer.getContainer().addItem(new Weapon("Revolver", "ein alter Revolver", 20, 5));
         garten.getContainer().addItem(new Key("Schlüsselkarte", "eine moderne Schlüsselkarte", 2, "Locker"));
     
@@ -119,7 +119,7 @@ class Game
             new Weapon("Excalibur", "das legendäre Schwert von König Artus", 30, 15),
             90,
             500,
-            "altes Buch",
+            "Schriftrolle",
             new Weapon("Excalibur", "das legendäre Schwert von König Artus", 30, 15)); //dro
 
         currentRoom = garten;  // das Spiel startet in Raum garten
@@ -151,8 +151,8 @@ class Game
     {
         System.out.println();
         System.out.println("Willkommen zu MiniAdventure!");
-        System.out.println("MiniAdventure ist ein viel zu kleines Spiel.");
-        System.out.println("Tippen Sie 'help', wenn Sie Hilfe brauchen.");
+        System.out.println("Das Ziel des Spiel ist es das legendäre Schwert Excalibur zu finden und aufzuheben.");
+        System.out.println("Tippen Sie 'help', wenn Sie unsicher sind welche Befehle es gibt.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
