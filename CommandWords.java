@@ -32,7 +32,7 @@ class CommandWords
      */
     public boolean isCommand(String input)
     {
-        return Arrays.asList(VALID_COMMANDS).contains(input);
+        return (Arrays.asList(VALID_COMMANDS).contains(input) || isContainerCommand(input));
     }
     
     /**
