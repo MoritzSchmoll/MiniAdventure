@@ -105,6 +105,7 @@ public class Enemy
             room.addItem(drop);
             return true;
         }
+        System.out.println("Dem Gegner hat dieser Gegenstand nicht gefallen.");
         return false;
     }
     

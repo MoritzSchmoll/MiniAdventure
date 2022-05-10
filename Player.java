@@ -32,14 +32,28 @@ public class Player
      * Überprüft ob der Spieler ein Gegenstand mit dem Übergebenen Namen im Inventar hat.
      * @author Moritz
      */
-    public boolean hasItem(String itemName)
+    
+    public Item getItem(String itemName)
     {
         for(int i = 0; i < inventory.size(); i++)
         {
             if(inventory.get(i).getName().equals(itemName))
             {
-                return true;
+                return inventory.get(i);
             }
+        }
+        return null;
+    }
+    
+    /**
+     * Überprüft ob der Spieler ein Gegenstand mit dem Übergebenen Namen im Inventar hat.
+     * @author Moritz
+     */
+    public boolean hasItem(String itemName)
+    {
+        if(getItem(itemName) != null)
+        {
+            return true;
         }
         return false;
     }

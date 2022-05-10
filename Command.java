@@ -54,7 +54,7 @@ class Command
      * @return  das zweite Wort dieses Befehls 
      *          liefere 'null', wenn es kein zweites Wort gab
      */
-    public String gibZweitesWort()
+    public String getSecondWord()
     {
         return zweitesWort;
     }

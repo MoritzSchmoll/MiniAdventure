@@ -200,7 +200,7 @@ class Game
                 System.out.println("Dieser Raum besitzt keinen Container...");
                 return false;
             }
-            else if(command.hasSecondCommand() && command.gibZweitesWort().equals(currentRoom.getContainer().getName()))
+            else if(command.hasSecondCommand() && command.getSecondWord().equals(currentRoom.getContainer().getName()))
             {
                 if(currentRoom.getContainer().isLocked() && !player.hasKeyOfType("Locker"))
                 {
@@ -215,7 +215,7 @@ class Game
             }
             else if(command.hasSecondCommand())
             {
-                System.out.println("Dieser Raum hat kein Behältnis mit dem Namen " + command.gibZweitesWort());
+                System.out.println("Dieser Raum hat kein Behältnis mit dem Namen " + command.getSecondWord());
                 return false;
             }
         }
@@ -237,17 +237,13 @@ class Game
         }
 
         if (commandWord.equals("give") && isFighting){
-            if(command.hasSecondCommand() && player.hasItem(command.gibZweitesWort()))
+            if(command.hasSecondCommand() && player.hasItem(command.getSecondWord()))
             {
-                if(!currentRoom.getEnemy().giveItem(command.gibZweitesWort())) //aktueller Raum muss einen Gegner haben, da der Spieler bereits im Kampf ist
-                {
-                    System.out.println("Dem Gegner hat diese Nahrung nicht geschmeckt.");
-                }
-                else
+                if(currentRoom.getEnemy().giveItem(command.getSecondWord())) //aktueller Raum muss einen Gegner haben, da der Spieler bereits im Kampf ist
                 {
                     currentRoom.removeEnemy();
                 }
-                player.removeItem(command.gibZweitesWort());
+                player.removeItem(command.getSecondWord());
             }
             else if(command.hasSecondCommand())
             {
@@ -262,7 +258,7 @@ class Game
 
         if (commandWord.equals("escape") && isFighting){
             if(command.hasSecondCommand()){
-                int result = currentRoom.tryingToEscape(command.gibZweitesWort());
+                int result = currentRoom.tryingToEscape(command.getSecondWord());
                 if(result == 0){
                     System.out.println("Du hast es geschafft zu flüchten.");
                     changeRoom(command);
@@ -335,7 +331,14 @@ class Game
         }
         else if (commandWord.equals("look")){
             if(command.hasSecondCommand()){
-                currentRoom.printItemDescription(command.gibZweitesWort()); 
+                if(player.hasItem(command.getSecondWord()))
+                {
+                    player.getItem(command.getSecondWord()).printAllStats();
+                }
+                else
+                {
+                    currentRoom.printItemDescription(command.getSecondWord());
+                }
             }
             else{
                 currentRoom.printAllItemsInRoom();
@@ -347,7 +350,7 @@ class Game
         
         else if (commandWord.equals("eat")){
             if(command.hasSecondCommand()){
-                player.eat(command.gibZweitesWort());
+                player.eat(command.getSecondWord());
             }
             else{
                 System.out.println("Es wurde keine Essen bestimmt welches gegessen werden soll");
@@ -355,7 +358,7 @@ class Game
         }
         else if (commandWord.equals("pickup")){
             if(command.hasSecondCommand()){
-                player.pickUp(currentRoom.findItem(command.gibZweitesWort()), currentRoom);
+                player.pickUp(currentRoom.findItem(command.getSecondWord()), currentRoom);
             }
             else{
                 System.out.println("Was soll auf gehoben werden?");
@@ -377,14 +380,14 @@ class Game
     {
         if(command.getCommand().equals("put"))
         {
-            if(!player.putItemInContainer(currentRoom.getContainer(), command.gibZweitesWort()))
+            if(!player.putItemInContainer(currentRoom.getContainer(), command.getSecondWord()))
             {
                 System.out.println("Dieser Gegenstand liegt nicht in deinem Inventar!");
             }
         }
         else if(command.getCommand().equals("take"))
         {
-            if(!player.pickUp(currentRoom.getContainer().takeItem(command.gibZweitesWort(), player.hasWeapon()), currentRoom))
+            if(!player.pickUp(currentRoom.getContainer().takeItem(command.getSecondWord(), player.hasWeapon()), currentRoom))
             {
                 System.out.println("Dieser Gegenstand liegt nicht in " + currentRoom.getContainer().getName());
             }
@@ -424,7 +427,7 @@ class Game
         }
 
         // Wir versuchen, den Raum zu verlassen.
-        Room nextRoom = currentRoom.getExit(command.gibZweitesWort());
+        Room nextRoom = currentRoom.getExit(command.getSecondWord());
 
         if (nextRoom == null) {
             System.out.println("Dort ist keine Tür!");
