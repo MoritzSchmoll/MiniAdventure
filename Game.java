@@ -58,6 +58,9 @@ class Game
         weinkeller = new Room("im Weinkeller, an dessen Wänden große Regale mit sehr vielen Weinflaschen stehen");
 
         // die Ausgänge initialisieren
+        thronsaal.setExit("west", weinkeller);
+        treppenhaus.setExit("north", speisekammer);
+        weinkeller.setExit("north", treppenhaus);
         garten.setExit("north", flur);
         garten.setExit("east", gewaechshaus);
         flur.setExit("east", küche);
@@ -108,19 +111,19 @@ class Game
         //Gegner erschaffen
         speisekammer.addEnemy("Rattenkönig", //name
                 "eine riesige Ratte, die so groß ist wie ein Hund", //description
-                new Weapon("Fleischhammer", "ein großer blutverschmierter Fleischhammer", 5, 5), //weapon
-                60, //agility
-                30, //health
+                new Weapon("Fleischhammer", "ein großer blutverschmierter Fleischhammer", 7, 5), //weapon
+                40, //agility
+                40, //health
                 "Keks", //food
                 new Food("Goldkeks", "ein goldener Keks", 30, 2)); //drop
             
         thronsaal.addEnemy("Skelletkönig",
                 "Der Geist von König Artus in Form eines großen angsteinflössendem Skellets",
             new Weapon("Excalibur", "das legendäre Schwert von König Artus", 30, 15),
-            90,
-            500,
+            60,
+            150,
             "Schriftrolle",
-            new Weapon("Excalibur", "das legendäre Schwert von König Artus", 30, 15)); //dro
+            new Weapon("Excalibur", "das legendäre Schwert von König Artus", 30, 15)); //drop
 
         currentRoom = garten;  // das Spiel startet in Raum garten
     }
@@ -469,6 +472,7 @@ class Game
     
     private void checkForEnemy(){
         if(currentRoom.hasEnemy()){
+            System.out.println();
             System.out.println("Es befindet sich ein Gegner mit dir im Raum.");
             System.out.println("Zur Verfügung stehende Befehle: attack, escape {direction}, give {item}, enemy, stats, heal");
             isFighting = true;

@@ -9,9 +9,9 @@ public class Player
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     final private int maxInventoryWeight = 15;
 
-    private int health = 20;
+    private int health = 40;
     private int saturation = 60;
-    private int agility = 50;
+    private int agility = 60;
     private int weight = 0;
     private Random rand = new Random();
     private boolean hasWeapon = false;
@@ -130,7 +130,7 @@ public class Player
                 String itemName = x.getName();
                 if(name.equals(itemName) && x instanceof Food){
                     System.out.println("Du hast " + name + " gegessen");
-                    System.out.println("Durch das essen wurden " + x.getStat() + " Sättigungspunkte wieder hergestellt.");
+                    System.out.println("Durch das Essen wurden " + x.getStat() + " Sättigungspunkte wieder hergestellt.");
                     changeSaturation(x.getStat());
                     it.remove();
                     gefunden = true;
