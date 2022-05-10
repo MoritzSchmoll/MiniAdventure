@@ -210,7 +210,7 @@ class Game
                     return false;
                 }
                 
-                currentRoom.container.printContents();
+                currentRoom.getContainer().printContents();
                 System.out.println("Mögliche Befehle: close, put {item}, take {item}");
                 containerIsOpened = true;
                 return false;
@@ -288,7 +288,7 @@ class Game
 
         if(containerIsOpened)
         {
-            System.out.println("Du musst " + currentRoom.container.getName() + " erst schließen bevor du etwas anderes tun kannst.");
+            System.out.println("Du musst " + currentRoom.getContainer().getName() + " erst schließen bevor du etwas anderes tun kannst.");
             return false;
         }
         
