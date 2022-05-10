@@ -49,6 +49,10 @@ public class Item
         return weight;
     }
     
+    /**
+     * Druckt die Eigenschaften eines Gegenstandes
+     * @author Moritz
+     */
     public void printAllStats()
     {
         System.out.println(name + ":");

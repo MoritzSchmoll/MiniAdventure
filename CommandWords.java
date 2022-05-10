@@ -12,7 +12,7 @@ class CommandWords
     };
     private static final String[] ALL_COMMANDS = {
         "go", "quit", "exit", "stop", "help", "look", "look {item}", "inventory", "stats", "eat {item}", "pickup {item}", "open {container}", 
-        "close", "put {item}", "take {item}", "attack", "escape {item}", "enemy", "give {item}", "heal"
+        "close", "put {item}", "take {item}", "attack", "escape {direction}", "enemy", "give {item}", "heal"
     };
     
     private static final String[] VALID_DIRECTIONS = {

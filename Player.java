@@ -254,28 +254,26 @@ public class Player
             {
                 inventory.add(newItem);
                 if(!isItemInContainer)
-                        currentRoom.removeItem(newItem);
+                    currentRoom.removeItem(newItem);
                 System.out.println("Du hast " + newItem.getName() + " aufgehoben");
                 return true;
             }
-            else if(newItem instanceof Weapon){
-                if(hasWeapon == false)
-                {
-                    inventory.add(newItem);
-                    if(!isItemInContainer)
-                        currentRoom.removeItem(newItem);
-                    hasWeapon = true;
-                    System.out.println("Du hast " + newItem.getName() + " aufgehoben");
-                    return true;
-                }
-                else
-                {
-                    System.out.println("Du hast schon eine Waffe im Inventar, um eine neue aufzuheben musst du deine jetzige ablegen.");
-                    return false;
-                }
+            else if(!hasWeapon)
+            {
+                inventory.add(newItem);
+                if(!isItemInContainer)
+                    currentRoom.removeItem(newItem);
+                hasWeapon = true;
+                System.out.println("Du hast " + newItem.getName() + " aufgehoben");
+                return true;
+            }
+            else
+            {
+                System.out.println("Du hast schon eine Waffe im Inventar, um eine neue aufzuheben musst du deine jetzige ablegen.");
+                return false;
             }
         }
-        else if (newItem != null)
+        else if(newItem != null)
         {
             System.out.println("Du kannst nichts weiteres tragen. Leg einen anderen Gegenstand in einem Behälter ab, um einen weiteren aufzuheben.");
         }

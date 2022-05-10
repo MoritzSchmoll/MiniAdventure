@@ -18,4 +18,5 @@ comment5.target=int\ getWeight()
 comment5.text=\r\n\ Gibt\ das\ Gewicht\ des\ Gegenstandes\ zur\u00FCck.\r\n
 comment6.params=
 comment6.target=void\ printAllStats()
+comment6.text=\r\n\ Druckt\ die\ Eigenschaften\ eines\ Gegenstandes\r\n\ @author\ Moritz\r\n
 numComments=7

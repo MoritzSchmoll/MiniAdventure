@@ -60,7 +60,7 @@ public class Container
     }
     
     /**
-     * Fügt einen Gegenstand zum Container hinzu
+     * Fügt einen Gegenstand zum Container hinzu, falls dieser sein Gegenstandslimit noch nicht erreicht hat.
      */
     public void addItem(Item item)
     {
@@ -73,6 +73,7 @@ public class Container
     
     /**
      * Nimmt einen Gegenstand aus dem Container, fügt diesen dem Inventar des Spielers hinzu und überprüft, ob der Spieler bereits eine Waffe hat, wenn er eine neue aufheben will.
+     * Wenn erfolgreich und der Spieler keine Waffe besitzt, wird der Gegenstand zurückgegeben. Ansonsten wird null zurückgegeben.
      */
     public Item takeItem(String itemName, boolean hasWeapon)
     {
