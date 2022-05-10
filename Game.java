@@ -152,6 +152,8 @@ class Game
         System.out.println();
         System.out.println("Willkommen zu MiniAdventure!");
         System.out.println("Das Ziel des Spiel ist es das legendäre Schwert Excalibur zu finden und aufzuheben.");
+        System.out.println("Sei immer auf der Hut und bereite dich schnells möglich auf einen Kampf vor");
+        System.out.println();
         System.out.println("Tippen Sie 'help', wenn Sie unsicher sind welche Befehle es gibt.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());

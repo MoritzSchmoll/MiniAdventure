@@ -136,6 +136,10 @@ public class Player
                     gefunden = true;
                     break;
                 }
+                if(name.equals(itemName) && !(x instanceof Food)){
+                    System.out.println("Dieser Gegenstand ist kein Essen");
+                    gefunden = true;
+                }
             }
             if(!gefunden)  
                 System.out.println("Du hast kein solches Essen in deinem Rucksack");
