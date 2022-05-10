@@ -112,7 +112,8 @@ public class Enemy
     /**
      * Angriff des Gegner an Spieler. Wenn die zufällige Zahl größer ist als die Wendigkeit des Spielers wird im Schaden hinzugefügt, ansonsten nicht.
      */
-        public int attack(int playerAgility){
+    public int attack(int playerAgility)
+    {
         Random rand = new Random();
         if(rand.nextInt(101) > playerAgility){
             return -(weapon.getStat());

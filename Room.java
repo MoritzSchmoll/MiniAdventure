@@ -21,7 +21,7 @@ class Room
     private ArrayList<RoomExit> exits;
     private Enemy enemy;
     private boolean isLocked; // Wenn wahr, dann benötigt das Betreten des Raumes einen Schlüssel
-    protected Container container;
+    private Container container;
 
     /**
      * Erzeugt einen Raum mit der gegebenen Beschreibung, falls nicht gegeben ist, ob dieser verschlossen ist, wird der Wert isLocked auf false gesetzt.
@@ -84,7 +84,6 @@ class Room
      * Ermöglicht das Verschließen des Containers
      * @author Moritz
      */
-    
     public void addContainer(String name, int sizeLimit, boolean isLocked)
     {
         container = new Container(name, sizeLimit, isLocked);

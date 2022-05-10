@@ -4,18 +4,18 @@ class CommandWords
 {
     // ein konstantes Array mit den gültigen Befehlswörtern
     
-    private static final String[] VALID_COMMANDS = {
+    private final String[] VALID_COMMANDS = {
         "go", "quit", "exit", "stop", "help", "look", "inventory", "stats", "eat", "pickup", "open", "attack", "escape", "enemy", "give", "heal"
     };
-    private static final String[] CONTAINER_COMMANDS = {
+    private final String[] CONTAINER_COMMANDS = {
         "put", "take", "close"
     };
-    private static final String[] ALL_COMMANDS = {
+    private final String[] ALL_COMMANDS = {
         "go", "quit", "exit", "stop", "help", "look", "look {item}", "inventory", "stats", "eat {item}", "pickup {item}", "open {container}", 
         "close", "put {item}", "take {item}", "attack", "escape {direction}", "enemy", "give {item}", "heal"
     };
     
-    private static final String[] VALID_DIRECTIONS = {
+    private final String[] VALID_DIRECTIONS = {
         "north", "east", "south", "west"
     };
     
@@ -43,6 +43,9 @@ class CommandWords
         return Arrays.asList(CONTAINER_COMMANDS).contains(input);
     }
     
+    /**
+     * Überprüft, ob es sich bei dem Wort um eine Richtung (z.B. north) handelt.
+     */
     public boolean isDirection(String input)
     {
         return Arrays.asList(VALID_DIRECTIONS).contains(input);

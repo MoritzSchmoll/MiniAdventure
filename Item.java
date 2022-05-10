@@ -4,10 +4,10 @@ import java.util.ArrayList;
  */
 public class Item
 {
-    protected String name;
-    protected String description;
-    protected int stat;
-    protected int weight;
+    private String name;
+    private String description;
+    private int stat;
+    private int weight;
     /**
      * Konstruktor für Objekte der Klasse Item
      * Hier werden den Gegenständen ihre Daten übergeben.

@@ -10,6 +10,7 @@ comment3.target=boolean\ isContainerCommand(java.lang.String)
 comment3.text=\r\n\ \u00DCberpr\u00FCft\ ob\ ein\ Befehl\ zum\ Bedienen\ von\ Containern\ genutzt\ wird.\r\n
 comment4.params=input
 comment4.target=boolean\ isDirection(java.lang.String)
+comment4.text=\r\n\ \u00DCberpr\u00FCft,\ ob\ es\ sich\ bei\ dem\ Wort\ um\ eine\ Richtung\ (z.B.\ north)\ handelt.\r\n
 comment5.params=
 comment5.target=void\ printAll()
 comment5.text=\r\n\ Gib\ alle\ g\u00FCltigen\ Befehlsw\u00F6rter\ auf\ die\ Konsole\ aus.\r\n
