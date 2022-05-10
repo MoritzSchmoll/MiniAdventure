@@ -99,10 +99,7 @@ public class Enemy
     {
         if(getSpecialFood().equals(food))
         {
-            String dropName = drop.getName();
-            String enemyName = getName();
-            System.out.println("Du hast " + enemyName + " im Raum zufriedengestellt. Er hat als Dank " + dropName + " auf den Boden gelegt.");
-            room.addItem(drop);
+            System.out.println("Du hast " + name + " im Raum zufriedengestellt. Er hat als Dank " + drop.getName() + " auf den Boden gelegt.");
             return true;
         }
         System.out.println("Dem Gegner hat dieser Gegenstand nicht gefallen.");
@@ -132,7 +129,6 @@ public class Enemy
             System.out.println("Damit hat der Gegner noch " + health + " Lebenspunkte");
         }
         if(health <= 0){
-            System.out.println("Du hast den Gegner im Raum besiegt");
             return true;
         }
         return false;

@@ -282,6 +282,7 @@ class Room
     
     public void removeEnemy()
     {
+        addItem(enemy.getDrop());
         enemy = null;
     }
 }

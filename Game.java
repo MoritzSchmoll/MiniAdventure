@@ -232,6 +232,7 @@ class Game
             }
             else
             {
+                System.out.println("Du hast " + currentRoom.getEnemy().getName() + " im Raum besiegt. Er hat " + currentRoom.getEnemy().getDrop().getName() + " auf den Boden gelegt.");
                 currentRoom.removeEnemy();
                 isFighting = false;
             }
@@ -358,7 +359,7 @@ class Game
                 player.eat(command.getSecondWord());
             }
             else{
-                System.out.println("Es wurde keine Essen bestimmt welches gegessen werden soll");
+                System.out.println("Es wurde kein Essen bestimmt welches gegessen werden soll");
             }
         }
         else if (commandWord.equals("pickup")){
